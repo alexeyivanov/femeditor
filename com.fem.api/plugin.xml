@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="com.fem.api.model" name="modelDescriber" schema="schema/com.fem.api.model.exsd"/>
+
+</plugin>

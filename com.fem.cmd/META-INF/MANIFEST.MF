@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Cmd
+Bundle-SymbolicName: com.fem.cmd;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.fem.cmd.Activator
+Bundle-Vendor: FEM
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.osgi.framework;version="1.3.0"
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.fem.api;bundle-version="1.0.0",
+ com.fem.ui.editors;bundle-version="1.0.0"
+Export-Package: com.fem.cmd

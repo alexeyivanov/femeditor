@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.fem.menus.additional.feature_1.0.0.qualifier.jar" id="com.fem.menus.additional.feature" version="1.0.0.qualifier">
+      <category name="com.fem.menus.additional"/>
+   </feature>
+   <category-def name="com.fem.menus.additional" label="Additional Example"/>
+</site>

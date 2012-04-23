@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.fem.cmd.saveCmd"
+            name="Save">
+      </command>
+      <command
+            id="com.fem.cmd.saveAll"
+            name="Save All">
+      </command>
+      <command
+            id="com.fem.cmd.newEditor"
+            name="New">
+      </command>
+      <command
+            id="com.fem.cmd.printCmd"
+            name="Print">
+      </command>
+      <command
+            id="com.fem.cmd.saveasCmd"
+            name="Save As">
+      </command>
+      <command
+            id="com.fem.cmd.undoCmd"
+            name="Undo">
+      </command>
+      <command
+            id="com.fem.cmd.redoCmd"
+            name="Redo">
+      </command>
+      <command
+            id="com.fem.cmd.cutCmd"
+            name="Cut">
+      </command>
+      <command
+            id="com.fem.cmd.copyCmd"
+            name="Copy">
+      </command>
+      <command
+            id="com.fem.cmd.pasteCmd"
+            name="Paste">
+      </command>
+      <command
+            id="com.fem.cmd.deleteCmd"
+            name="Delete">
+      </command>
+      <command
+            id="com.fem.cmd.exportCmd"
+            name="Export">
+      </command>
+      <command
+            id="com.fem.cmd.solveCmd"
+            name="Solve">
+      </command>
+      <command
+            id="com.fem.cmd.showView"
+            name="Show View">
+         <commandParameter
+               id="com.fem.cmd.viewId"
+               name="viewId"
+               optional="true">
+         </commandParameter>
+      </command>
+      <command
+            id="com.fem.cmd.openFile"
+            name="Open File ...">
+      </command>
+   </extension>
+
+</plugin>

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Bindings
+Bundle-SymbolicName: com.fem.ui.bindings
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.fem.ui.bindings.Activator
+Bundle-Vendor: FEM
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Import-Package: org.osgi.framework;version="1.3.0"

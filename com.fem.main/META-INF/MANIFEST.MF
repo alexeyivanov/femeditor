@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Main
+Bundle-SymbolicName: com.fem.main; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.fem.main.Activator
+Bundle-Vendor: FEM
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.fem.ui.views;bundle-version="1.0.0",
+ com.fem.ui.menus;bundle-version="1.0.0",
+ com.fem.cmd;bundle-version="1.0.0",
+ com.fem.ui.handlers;bundle-version="1.0.0",
+ com.fem.ui.editors;bundle-version="1.0.0",
+ com.fem.api;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .

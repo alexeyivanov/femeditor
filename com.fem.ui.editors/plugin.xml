@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.fem.ui.editors.FemEditor"
+            default="false"
+            id="com.fem.main.femEditor"
+            name="Fem Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.fem.ui.editors.cmd.NewEditorCmd"
+            id="com.fem.ui.editors.cmd.openEditor"
+            name="Open Editor">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:file?before=openFile">
+         <command
+               commandId="com.fem.ui.editors.cmd.openEditor"
+               icon="icons/15201.newfile_wiz.png"
+               label="New"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="com.fem.api.model">
+      <drawModelFile
+            describer="com.fem.ui.editor.describer.FEMEditorDescriber"
+            fileExtention="txt">
+      </drawModelFile>
+   </extension>
+
+</plugin>

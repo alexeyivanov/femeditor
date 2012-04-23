@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:com.fem.ui.menus.actionsToolbar">
+         <command
+               commandId="com.fem.menus.additional.cmd.drawElement"
+               icon="icons/draw_element.gif"
+               label="Draw Element"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:actions">
+         <command
+               commandId="com.fem.menus.additional.cmd.drawElement"
+               icon="icons/draw_element.gif"
+               label="Draw Element"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.fem.menus.additional.cmd.DrawElement"
+            commandId="com.fem.menus.additional.cmd.drawElement">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="com.fem.menus.additional.cmd.drawElement"
+            name="Draw Element">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.fem.menus.additional.cmd.drawElement"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="F6">
+      </key>
+   </extension>
+
+</plugin>
