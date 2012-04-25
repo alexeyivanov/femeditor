@@ -57,8 +57,8 @@ public class TaskView extends ViewPart implements IFemView {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		String updatedString = "update() called, model data is "
-				 + ((IDrawModel) o).getModelInfo();
+		String updatedString = "update() called, model identificator "
+		        + ((IDrawModel) o).getUID();
 		showText(updatedString);
 	}
 

@@ -26,7 +26,7 @@ public class Java3DViewerTester {
 		IDrawModel d = new DrawModelImpl();
 		d.setGeometryShapeManager(new GeometryShapeManagerOCC());
 		d.setDrawShapeModelManager(new VisualShapeManagerImpl());
-//	
+	
 //		d.setLineWidth(0.1f);
 //		
 //		d.circle(0.6);
@@ -56,7 +56,7 @@ public class Java3DViewerTester {
 //		d.setFaceColor(Color.BLUE);
 //		d.cylinder(0.2, 0.3, Math.PI*2);
 //		d.save("FN.brep");
-		d.load("C:/Users/echekanina/Documents/EclipseFEMProject/workspaceFEMFinal/femeditor/columns.brep");
+//		d.load("C:/Users/echekanina/Documents/EclipseFEMProject/workspaceFEMFinal/femeditor/columns.brep");
 		return d;
 	}
 	

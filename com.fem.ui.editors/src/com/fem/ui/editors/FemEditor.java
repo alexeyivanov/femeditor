@@ -1,6 +1,5 @@
 package com.fem.ui.editors;
 
-import java.awt.Color;
 import java.awt.Frame;
 import java.util.Observable;
 
@@ -12,7 +11,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.awt.SWT_AWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.ISelectionListener;
@@ -29,17 +27,13 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 	
 	public static final String ID = "com.fem.main.femEditor";
 	
-//	private DummyEditorInput input;
 	
 	private Composite topComposite;
-//	
-//	private SimpleUniverse universe;
-//
+
 	private Frame frameAWT;
 	
 	private Java3DViewer viewer;
 	
-	private Text text;
 
 	
 
@@ -86,7 +80,6 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 	@Override
 	public void createPartControl(Composite parent) {
 		
-//		text = new Text(parent, SWT.BORDER);
 		
 //		get draw model
 		IEditorInput input = getEditorInput();
@@ -104,72 +97,13 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 		
 		
 //		frameAWT.setBounds(0, 0, 800, 600);
-
+//
 //		model.setFaceColor(Color.GREEN);
 //		model.circle(0.9);
 		
 		
 	    viewer = new Java3DViewer(frameAWT, model);
 		frameAWT.add(viewer);
-	    
-		
-		
-		
-		
-		
-//		GraphicsConfiguration config = SimpleUniverse.getPreferredConfiguration();
-//		Canvas3D canvas = new Canvas3D(config);
-////		SimpleUniverse universe = new SimpleUniverse(canvas);
-//		universe = new SimpleUniverse(canvas);
-//		
-//		ColorCube cube  = new ColorCube();
-//		Transform3D trans = new Transform3D();
-//		trans.rotX(Math.PI / 4.0d);
-//		trans.rotY(Math.PI / 4.0d);
-//		trans.setTranslation(new Vector3d(0, 0, -10));
-//		
-//		TransformGroup group = new TransformGroup(trans);
-////		TransformGroup group = new TransformGroup(trans);
-//		group.addChild(cube);
-////		branchGroup = new BranchGroup();
-//		BranchGroup branchGroup = new BranchGroup();
-//		branchGroup.addChild(group);
-//		universe.getViewingPlatform().setNominalViewingTransform();
-//		universe.addBranchGraph(branchGroup);
-//		frameAWT.add(canvas, BorderLayout.CENTER);
-		
-		
-		
-		
-		
-		
-//		topComposite = new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND);
-		
-//		topComposite.setParent(parent.getParent());
-//		parent.dispose();
-//		parent = null;
-//		frameAWT = SWT_AWT.new_Frame(topComposite);
-//		GraphicsConfiguration config = SimpleUniverse.getPreferredConfiguration();
-//		Canvas3D canvas = new Canvas3D(config);
-////		SimpleUniverse universe = new SimpleUniverse(canvas);
-//		universe = new SimpleUniverse(canvas);
-//		
-//		ColorCube cube  = new ColorCube();
-//		Transform3D trans = new Transform3D();
-//		trans.rotX(Math.PI / 4.0d);
-//		trans.rotY(Math.PI / 4.0d);
-//		trans.setTranslation(new Vector3d(0, 0, -10));
-//		
-//		TransformGroup group = new TransformGroup(trans);
-////		TransformGroup group = new TransformGroup(trans);
-//		group.addChild(cube);
-////		branchGroup = new BranchGroup();
-//		BranchGroup branchGroup = new BranchGroup();
-//		branchGroup.addChild(group);
-//		universe.getViewingPlatform().setNominalViewingTransform();
-//		universe.addBranchGraph(branchGroup);
-//		frameAWT.add(canvas, BorderLayout.CENTER);
-		
 		
 		getSite().setSelectionProvider(this);
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
@@ -180,30 +114,21 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 	public void setFocus() {
 	}
 
-//	@Override
-//	public void drawElement() {
-//		    ColorCube cube  = new ColorCube(0.4f);
-//		    BranchGroup branchGroup = new BranchGroup();
-//		    branchGroup.addChild(cube);
-//		    universe.addBranchGraph(branchGroup);
-//			
-//	}
-
 	
 	@Override
 	public void dispose() {
 		// important: We need do unregister our listener when the view is disposed
 		getSite().getWorkbenchWindow().getSelectionService().removeSelectionListener(this);
-//		super.dispose();
+		super.dispose();
 	}
 
 
 	@Override
 	public void update(Observable o, Object arg) {
 		IDrawModel model =(IDrawModel)o;
-		String updatedString = "update() called"
-		        + model.getModelInfo();
-//		text.setText(updatedString);
+		if(model != null){
+			viewer.draw(model);
+		}
 	}
 
 	@Override

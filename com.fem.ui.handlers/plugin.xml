@@ -59,6 +59,18 @@
             class="com.fem.cmd.OpenFileCmd"
             commandId="com.fem.cmd.openFile">
       </handler>
+      <handler
+            class="com.fem.cmd.DrawElement"
+            commandId="com.fem.cmd.drawElement">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
    </extension>
 
 </plugin>

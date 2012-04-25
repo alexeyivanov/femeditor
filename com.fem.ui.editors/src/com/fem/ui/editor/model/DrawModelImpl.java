@@ -4,12 +4,8 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
-import java.util.Observer;
 import java.util.UUID;
 
-import javax.media.j3d.ImageComponent2D;
-import javax.media.j3d.Texture;
-import javax.media.j3d.Texture2D;
 import javax.vecmath.Point3d;
 
 import com.fem.api.Coordinate;
@@ -19,7 +15,6 @@ import com.fem.api.IDrawModel;
 import com.fem.api.VisualSettings;
 import com.fem.api.VisualShape;
 import com.fem.api.VisualShapeManager;
-import com.sun.j3d.utils.image.TextureLoader;
 
 public class DrawModelImpl extends Observable implements IDrawModel {
 	
@@ -36,10 +31,10 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	private GeometryShapeManager geometryShapeManager;
 	private VisualShapeManager visualShapeManager;
 	
-	private String modelInfo;
+//	private String modelInfo;
 	
 	
-	private final String uid = UUID.randomUUID().toString();
+	private String uid;
 	
 
 	@Override
@@ -67,7 +62,7 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 
 	private void init() {
 //		vs = new VisualSettings(Color.GREEN, Color.BLACK, 1, null, 0);
-		modelInfo = "model data" + uid;
+		uid = UUID.randomUUID().toString();
 	}
 	
 	public void add(ArrayList<VisualShape> newShapes) {
@@ -833,17 +828,60 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 		notifyObservers();
 	}
 
-	@Override
-	public String getModelInfo() {
-		return null;
-	}
 
 	@Override
 	public String getUID() {
 		return uid;
 	}
 
-	public void setModelInfo(String modelInfo) {
-		this.modelInfo = modelInfo;
+
+	@Override
+	public void drawElement() {
+
+		setCheckIntersection(false);
+		setFaceColor(Color.WHITE);
+	    setTransparency(0);
+		moveTo(-0.4,0,-0.4);		
+		VisualShape base = box(0.8, 0.2, 0.8);
+		moveTo(0, 0.2, 0);
+		VisualShape col = cone(0.3, 0.2, 3.8, Math.PI*2);
+		moveTo(0, 4, 0);
+		VisualShape capitel1 = cone(0.2, 0.3, 0.2, Math.PI*2);
+		move(0, 0.2, 0);
+		VisualShape capitel2 = cylinder(0.35, 0.15, Math.PI*2);
+		VisualShape column = fuse(base, col);
+		column = fuse(column, capitel1);
+		column = fuse(column, capitel2);
+		moveTo(-1, 0, 0);
+		VisualShape cutBox =box(5, 6, 1);
+		column = cut(column, cutBox);
+		delete(cutBox);
+		VisualShape columns = array(column, 6, 2, 0, 0);				
+		moveTo(-0.4, 4.35, -0.4);		
+		VisualShape beam = box(5*2+0.8, 0.3, 0.4);
+		
+		moveTo(-0.4, 0, 0);
+		setFaceColor(Color.GREEN);		
+		VisualShape wall = box(5*2+0.8, 4.65, 0.5);
+		
+		wall = fuse(wall, beam);
+		fuse(columns, wall);
+	
+		setDirection(0, 0, 1);
+		moveTo(1, 3, 0);
+		VisualShape arch = cylinder(0.5, 0.5, Math.PI*2);			
+		move(-0.5,0,0);
+		VisualShape door = box(1, -3, 0.5);
+		door = fuse(door, arch);
+		wall = cut(wall,door);		
+		door = copy(door, 2, 0, 0);
+		wall = cut(wall,door);
+		door = copy(door, 2, 0, 0);
+		wall = cut(wall,door);
+		door = copy(door, 2, 0, 0);
+		wall = cut(wall,door);
+		door = copy(door, 2, 0, 0);
+		wall = cut(wall,door);
 	}
+
 }

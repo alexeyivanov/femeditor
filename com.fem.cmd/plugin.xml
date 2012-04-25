@@ -68,6 +68,10 @@
             id="com.fem.cmd.openFile"
             name="Open File ...">
       </command>
+      <command
+            id="com.fem.cmd.drawElement"
+            name="Draw Element">
+      </command>
    </extension>
 
 </plugin>

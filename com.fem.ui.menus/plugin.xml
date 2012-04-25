@@ -138,6 +138,12 @@
                   label="Solve"
                   style="push">
             </command>
+            <command
+                  commandId="com.fem.cmd.drawElement"
+                  icon="icons/draw_element.gif"
+                  label="Draw Element"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -182,6 +188,12 @@
                   icon="icons/solve.png"
                   id="solve"
                   label="Solve"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.fem.cmd.drawElement"
+                  icon="icons/draw_element.gif"
+                  label="Draw Element"
                   style="push">
             </command>
          </toolbar>

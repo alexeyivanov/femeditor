@@ -11,7 +11,7 @@ public interface IDrawModel  extends IAdaptable {
 
 	void addObserver(Observer o) ;
 	void notifyAllObservers() ;
-	String getModelInfo();
+//	String getModelInfo();
 	String getUID();
 	
 	GeometryShapeManager getGeometryShapeManager();
@@ -67,6 +67,8 @@ public interface IDrawModel  extends IAdaptable {
 	VisualShape box(double dx, double dy, double dz);
 	
 	VisualShape array(VisualShape s, int n, double dx,double dy, double dz);
+	
+	void drawElement();
 	
 	
 	
