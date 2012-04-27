@@ -71,6 +71,30 @@
             </with>
          </activeWhen>
       </handler>
+      <handler
+            class="com.fem.cmd.CloseCmd"
+            commandId="com.fem.cmd.closeCmd">
+         <enabledWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </enabledWhen>
+      </handler>
+      <handler
+            class="com.fem.cmd.CloseAllCmd"
+            commandId="com.fem.cmd.closeAll">
+         <enabledWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </enabledWhen>
+      </handler>
    </extension>
 
 </plugin>

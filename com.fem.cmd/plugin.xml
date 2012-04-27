@@ -72,6 +72,14 @@
             id="com.fem.cmd.drawElement"
             name="Draw Element">
       </command>
+      <command
+            id="com.fem.cmd.closeAll"
+            name="Close All">
+      </command>
+      <command
+            id="com.fem.cmd.closeCmd"
+            name="Close">
+      </command>
    </extension>
 
 </plugin>

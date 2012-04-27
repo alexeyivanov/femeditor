@@ -12,7 +12,9 @@ Require-Bundle: org.eclipse.ui,
  com.fem.cmd;bundle-version="1.0.0",
  com.fem.ui.handlers;bundle-version="1.0.0",
  com.fem.ui.editors;bundle-version="1.0.0",
- com.fem.api;bundle-version="1.0.0"
+ com.fem.api;bundle-version="1.0.0",
+ org.eclipse.help.ui;bundle-version="3.5.101",
+ org.eclipse.help.webapp;bundle-version="3.6.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

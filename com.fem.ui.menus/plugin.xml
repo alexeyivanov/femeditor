@@ -20,6 +20,20 @@
                visible="true">
          </separator>
          <command
+               commandId="com.fem.cmd.closeCmd"
+               label="Close"
+               style="push">
+         </command>
+         <command
+               commandId="com.fem.cmd.closeAll"
+               label="Close All"
+               style="push">
+         </command>
+         <separator
+               name="com.fem.ui.menus.separator5"
+               visible="true">
+         </separator>
+         <command
                commandId="com.fem.cmd.saveCmd"
                disabledIcon="icons/12505_save_edit.gif"
                icon="icons/12517.save.gif"
