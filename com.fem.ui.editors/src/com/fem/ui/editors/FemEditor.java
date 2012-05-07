@@ -95,7 +95,6 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 		parent = null;
 		frameAWT = SWT_AWT.new_Frame(topComposite);
 		
-		
 //		frameAWT.setBounds(0, 0, 800, 600);
 //
 //		model.setFaceColor(Color.GREEN);
