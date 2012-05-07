@@ -5,8 +5,6 @@ import java.util.Observer;
 
 import org.eclipse.core.runtime.IAdaptable;
 
-
-
 public interface IDrawModel  extends IAdaptable {
 
 	void addObserver(Observer o) ;
@@ -21,6 +19,10 @@ public interface IDrawModel  extends IAdaptable {
 	VisualShapeManager getDrawShapeModelManager();
 
 	void setDrawShapeModelManager(VisualShapeManager drawShapeModelManager);
+	
+	VisualSettingsFactory getVisualSettingsFactory();
+
+	void setVisualSettingsFactory(VisualSettingsFactory visualSettingsFactory);
 	
 	VisualShape add(final VisualShape shape);
 	

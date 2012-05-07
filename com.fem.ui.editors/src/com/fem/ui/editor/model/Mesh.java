@@ -192,7 +192,7 @@ public class Mesh implements Visible {
 	}
 	
 	public Mesh(VisualSettings vs) {	
-		this.vs = new VisualSettings(vs);
+		this.vs = vs.cloneObject();
 	}
 	
 	public Mesh(Elements elements) {

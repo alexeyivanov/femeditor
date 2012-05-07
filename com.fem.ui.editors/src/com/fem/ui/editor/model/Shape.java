@@ -3,6 +3,7 @@ package com.fem.ui.editor.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.media.j3d.Appearance;
 import javax.media.j3d.Bounds;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Shape3D;
@@ -153,7 +154,7 @@ public class Shape implements Visible {
 		
 	public Shape(int type, TopoDS_Shape shape, VisualSettings vs) {
 		this.type = type;
-		this.vs = new VisualSettings(vs);		
+		this.vs = vs.cloneObject();		
 		setShape(shape);
 	}
 	
@@ -175,7 +176,7 @@ public class Shape implements Visible {
 
 	public Shape(int type, Mesh mesh, VisualSettings vs) {
 		this.type = type;		
-		this.vs = new VisualSettings(vs);
+		this.vs = vs.cloneObject();
 		this.mesh = mesh;
 		mesh.create();
 		drawMesh = true;		
@@ -245,14 +246,14 @@ public class Shape implements Visible {
 			return;
 		}
 		selected = v;
-//		for (Shape3D s : faces) {			
-//			if (selected) s.setAppearance(vs.getSelectedFaceAppearance());
-//			else s.setAppearance(vs.getFaceAppearance());
-//		}
-//		for (Shape3D s : edges) {			
-//			if (selected) s.setAppearance(vs.getSelectedLineAppearance());
-//			else s.setAppearance(vs.getLineAppearance());
-//		}
+		for (Shape3D s : faces) {			
+			if (selected) s.setAppearance(vs.getSelectedFaceAppearance(Appearance.class));
+			else s.setAppearance(vs.getFaceAppearance(Appearance.class));
+		}
+		for (Shape3D s : edges) {			
+			if (selected) s.setAppearance(vs.getSelectedLineAppearance(Appearance.class));
+			else s.setAppearance(vs.getLineAppearance(Appearance.class));
+		}
 	}
 	
 	public boolean isSelected() {

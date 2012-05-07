@@ -19,6 +19,7 @@ import com.fem.api.describer.IFEMModelDescriber;
 import com.fem.api.utils.ExtensionPointDescriberHelper;
 import com.fem.ui.editor.model.DrawModelImpl;
 import com.fem.ui.editor.model.GeometryShapeManagerOCC;
+import com.fem.ui.editor.model.VisualSettingsFactoryJava3DImpl;
 import com.fem.ui.editor.model.VisualShapeManagerImpl;
 import com.fem.ui.editors.DummyEditorInput;
 
@@ -42,7 +43,7 @@ public class OpenFileCmd extends AbstractHandler {
 		
 		System.out.println("Selected file: " + fileSelected);
 		
-		IDrawModel model = new DrawModelImpl();
+		IDrawModel model = new DrawModelImpl(new VisualSettingsFactoryJava3DImpl());
 		model.setGeometryShapeManager(new GeometryShapeManagerOCC());
 		model.setDrawShapeModelManager(new VisualShapeManagerImpl());
 		

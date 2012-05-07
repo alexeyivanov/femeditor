@@ -80,11 +80,11 @@ public class Mesher {
 		
 //		TODO get VisualSettings
 		
-//		m.setFaceColor(s.getVisualSettings().getFaceColor());
-////		m.addTetrahedrons(indtetr);
-//		m.setFaceColor(s.getVisualSettings().getFaceColor());
-//		m.addTriangles(indtrian);
-//		m.setLineColor(s.getVisualSettings().getLineColor());
+		m.setFaceColor(s.getVisualSettings().getFaceColor());
+//		m.addTetrahedrons(indtetr);
+		m.setFaceColor(s.getVisualSettings().getFaceColor());
+		m.addTriangles(indtrian);
+		m.setLineColor(s.getVisualSettings().getLineColor());
 		m.addLines(indline);
 		
 //		for (int i = 0; i < indtetr.length; i+=4) {
