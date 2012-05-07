@@ -3,6 +3,7 @@ package com.fem.ui.editor.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.media.j3d.Appearance;
 import javax.media.j3d.Bounds;
 import javax.media.j3d.BranchGroup;
 import javax.media.j3d.Shape3D;
@@ -14,6 +15,7 @@ import org.jcae.opencascade.jni.TopoDS_Vertex;
 
 import com.fem.api.FaceMesh;
 import com.fem.api.GeometryShape;
+import com.fem.api.VisualSettings;
 import com.fem.api.VisualSettings;
 import com.fem.api.VisualShape;
 import com.fem.ui.editor.model.Shape.Edge;
@@ -57,7 +59,7 @@ public class VisualShapeImpl implements VisualShape {
 		
 	public VisualShapeImpl(int type, TopoDS_Shape shape, VisualSettings vs) {
 		this.type = type;
-		this.vs = new VisualSettings(vs);		
+		this.vs = vs.cloneObject();		
 		setShape(shape);
 		
 	}
@@ -66,7 +68,7 @@ public class VisualShapeImpl implements VisualShape {
 	
 	public VisualShapeImpl(int type, GeometryShape shape, VisualSettings vs) {
 		this.type = type;
-		this.vs = new VisualSettings(vs);
+		this.vs = vs.cloneObject();
 		
 		setShape(shape);
 		
@@ -106,7 +108,7 @@ public class VisualShapeImpl implements VisualShape {
 	
 	public VisualShapeImpl(int type, Mesh mesh, VisualSettings vs) {
 		this.type = type;		
-		this.vs = new VisualSettings(vs);
+		this.vs = vs.cloneObject();
 		this.mesh = mesh;
 		mesh.create();
 		drawMesh = true;		
@@ -176,14 +178,14 @@ public class VisualShapeImpl implements VisualShape {
 			return;
 		}
 		selected = v;
-//		for (Shape3D s : faces) {			
-//			if (selected) s.setAppearance(vs.getSelectedFaceAppearance());
-//			else s.setAppearance(vs.getFaceAppearance());
-//		}
-//		for (Shape3D s : edges) {			
-//			if (selected) s.setAppearance(vs.getSelectedLineAppearance());
-//			else s.setAppearance(vs.getLineAppearance());
-//		}
+		for (Shape3D s : faces) {			
+			if (selected) s.setAppearance(vs.getSelectedFaceAppearance(Appearance.class));
+			else s.setAppearance(vs.getFaceAppearance(Appearance.class));
+		}
+		for (Shape3D s : edges) {			
+			if (selected) s.setAppearance(vs.getSelectedLineAppearance(Appearance.class));
+			else s.setAppearance(vs.getLineAppearance(Appearance.class));
+		}
 	}
 	
 	public boolean isSelected() {

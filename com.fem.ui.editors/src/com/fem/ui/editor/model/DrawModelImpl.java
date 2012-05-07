@@ -13,6 +13,7 @@ import com.fem.api.GeometryShape;
 import com.fem.api.GeometryShapeManager;
 import com.fem.api.IDrawModel;
 import com.fem.api.VisualSettings;
+import com.fem.api.VisualSettingsFactory;
 import com.fem.api.VisualShape;
 import com.fem.api.VisualShapeManager;
 
@@ -30,6 +31,7 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	
 	private GeometryShapeManager geometryShapeManager;
 	private VisualShapeManager visualShapeManager;
+	private VisualSettingsFactory visualSettingsFactory;
 	
 //	private String modelInfo;
 	
@@ -56,12 +58,22 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 		this.visualShapeManager = drawShapeModelManager;
 	}
 
-	public DrawModelImpl() {
+	public VisualSettingsFactory getVisualSettingsFactory() {
+		return visualSettingsFactory;
+	}
+
+	public void setVisualSettingsFactory(VisualSettingsFactory visualSettingsFactory) {
+		this.visualSettingsFactory = visualSettingsFactory;
+	}
+
+	public DrawModelImpl(VisualSettingsFactory visualSettingsFactory) {
+		setVisualSettingsFactory(visualSettingsFactory);
 		init();
 	}
 
 	private void init() {
 //		vs = new VisualSettings(Color.GREEN, Color.BLACK, 1, null, 0);
+		vs = visualSettingsFactory.create(Color.GREEN, Color.BLACK, 1, 0);
 		uid = UUID.randomUUID().toString();
 	}
 	
@@ -132,10 +144,11 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 						final VisualShape visualShape = visualShapeManager.create(shape.getType(), s3, shape.getVisualSettings());
 						VisualShape toReturn = checkIntersection(visualShape);
 //						TODO visualsettings
-						if(toReturn!=null){
-							toReturn.setCutted(true);
-							
-						}
+						toReturn.setCutted(true);
+//						if(toReturn!=null){
+//							toReturn.setCutted(true);
+//							
+//						}
 						
 						return toReturn;
 					}
@@ -291,20 +304,20 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	}
 		
 	public void setFaceColor(Color c) {
-//		vs.setFaceColor(c);
+		vs.setFaceColor(c);
 	}
 	
 	public void setTransparency(double t) {
-//		vs.setTransparency(t);
+		vs.setTransparency(t);
 	}
 	
 	public void setLineColor(Color c) {
-//		vs.setLineColor(c);
+		vs.setLineColor(c);
 		newLine();
 	}
 	
 	public void setLineWidth(float w) {
-//		vs.setLineWidth(w);
+		vs.setLineWidth(w);
 		newLine();
 	}
 	
@@ -323,7 +336,7 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	}
 	
 	public void noTexture() {
-//		vs.texture = null;
+		vs.setTexture(null, null);
 	}
 	
 	private void setPos(double x, double y, double z) {

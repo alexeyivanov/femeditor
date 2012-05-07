@@ -77,7 +77,7 @@ public class Java3DUtils {
 			g.setCapability(IndexedGeometryArray.ALLOW_COORDINATE_INDEX_READ);	
 			 
 			Shape3D shape3d=new Shape3D(g);
-			shape3d.setAppearance(getFaceAppearance());
+			shape3d.setAppearance(vs.getFaceAppearance(Appearance.class));
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);			
 			shape3d.setCapability(Shape3D.ALLOW_GEOMETRY_READ);
@@ -95,7 +95,7 @@ public class Java3DUtils {
 			g=gi.getGeometryArray();
 			
 			shape3d=new Shape3D(g);
-			shape3d.setAppearance(getFaceAppearance());
+			shape3d.setAppearance(vs.getFaceAppearance(Appearance.class));
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);
 			shape3d.setCapability(Shape3D.ALLOW_GEOMETRY_READ);
@@ -197,7 +197,7 @@ public class Java3DUtils {
 			lsa.setCoordinates(0, coordinates);
 			Shape3D shape3d=new Shape3D(lsa);
 			
-//			shape3d.setAppearance(vs.getLineAppearance());
+			shape3d.setAppearance(vs.getLineAppearance(Appearance.class));
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);
 			shape3d.setCapability(Shape3D.ALLOW_GEOMETRY_READ);
@@ -284,7 +284,7 @@ public class Java3DUtils {
 		g.setCapability(IndexedGeometryArray.ALLOW_COORDINATE_INDEX_READ);	
 		
 		final Shape3D shape3d = new Shape3D(g);
-//		shape3d.setAppearance(vs.getMeshAppearance());
+		shape3d.setAppearance(vs.getMeshAppearance(Appearance.class));
 		shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 		shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);			
 		shape3d.setCapability(Shape3D.ALLOW_GEOMETRY_READ);
@@ -300,7 +300,7 @@ public class Java3DUtils {
 		ila.setCoordinateIndices(0, lineInd.getArray());
 		
 		final Shape3D shape3d = new Shape3D(ila);
-//		shape3d.setAppearance(vs.getLineAppearance());
+		shape3d.setAppearance(vs.getLineAppearance(Appearance.class));
 		shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 		shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);
 		shape3d.setCapability(Shape3D.ALLOW_GEOMETRY_READ);
@@ -324,10 +324,10 @@ public class Java3DUtils {
 		for (int i = 0; i < points.size(); i++) {
 			MeshPoint p = points.get(i);
 			p.averageResult();
-//			if (p.hasResult()) 				
-//				colors[i] = vs.getScaleColor((float)((p.result-minResult)/(maxResult - minResult)));
-//			else 
-//				colors[i] = vs.getJ3DColor(vs.getFaceColor());			
+			if (p.hasResult()) 				
+				colors[i] = vs.getScaleColor(Color3f.class, (float)((p.result-minResult)/(maxResult - minResult)));
+			else 
+				colors[i] = vs.getJ3DColor(Color3f.class, vs.getFaceColor());			
 		}	
 		
 		return colors;
