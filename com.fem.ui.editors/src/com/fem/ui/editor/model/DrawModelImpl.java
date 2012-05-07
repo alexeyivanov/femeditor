@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Observable;
 import java.util.UUID;
 
-import javax.vecmath.Point3d;
-
 import com.fem.api.Coordinate;
 import com.fem.api.GeometryShape;
 import com.fem.api.GeometryShapeManager;
@@ -403,10 +401,10 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 		return shape;		
 	}
 	
-	public VisualShape lineTo(Point3d p) {
-		return lineTo(p.x,p.y,p.z);
-	}
-	
+//	public VisualShape lineTo(Point3d p) {
+//		return lineTo(p.x,p.y,p.z);
+//	}
+//	
 	public VisualShape line(double l) {
 		return lineTo(position.getX() + direction.getX()*l,
 				position.getY() + direction.getY()*l,

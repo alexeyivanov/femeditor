@@ -13,7 +13,7 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 	@Override
 	public void initialize(IWorkbenchConfigurer configurer) {
 //		Enable the workbench state save mechanism
-		configurer.setSaveAndRestore(true);
+//		configurer.setSaveAndRestore(true);
 		super.initialize(configurer);
 	}
 	

@@ -5,8 +5,8 @@
          point="org.eclipse.ui.views">
       <view
             class="com.fem.ui.views.FemView"
-            id="com.fem.ui.views.femView"
-            name="Fem View"
+            id="com.fem.ui.views.commandView"
+            name="Command View"
             restorable="true">
       </view>
       <view
@@ -32,14 +32,37 @@
          </command>
          <command
                commandId="com.fem.cmd.showView"
-               label="Fem View"
+               label="Command View"
                style="push">
             <parameter
                   name="com.fem.cmd.viewId"
-                  value="com.fem.ui.views.femView">
+                  value="com.fem.ui.views.commandView">
             </parameter>
          </command>
       </menuContribution>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            name="com.fem.element">
+      </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.markerAnnotationSpecification">
+      <specification
+            annotationType="com.fem.element"
+            colorPreferenceKey="annotateElemColor"
+            colorPreferenceValue="0,225,255"
+            contributesToHeader="false"
+            highlightPreferenceKey="annotateElemHighlight"
+            highlightPreferenceValue="true"
+            includeOnPreferencePage="true"
+            label="Sample Annotation"
+            overviewRulerPreferenceKey="annotateElemOverviewRuler"
+            overviewRulerPreferenceValue="true"
+            textPreferenceKey="annotateElemText"
+            verticalRulerPreferenceKey="annotateElemVerticalRuler"
+            verticalRulerPreferenceValue="true">
+      </specification>
+   </extension>
 </plugin>

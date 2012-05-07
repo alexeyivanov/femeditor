@@ -26,8 +26,8 @@
       <perspectiveExtension
             targetID="*">
          <view
-               closeable="false"
-               id="com.fem.ui.views.femView"
+               closeable="true"
+               id="com.fem.ui.views.commandView"
                ratio="0.3f"
                relationship="left"
                relative="org.eclipse.ui.editorss"
@@ -40,7 +40,7 @@
                moveable="true"
                ratio="0.8f"
                relationship="bottom"
-               relative="com.fem.ui.views.femView"
+               relative="com.fem.ui.views.commandView"
                visible="false">
          </view>
       </perspectiveExtension>
