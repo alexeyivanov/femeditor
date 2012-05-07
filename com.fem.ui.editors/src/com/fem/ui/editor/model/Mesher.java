@@ -96,7 +96,7 @@ public class Mesher {
 	public static Mesh createMesh(VisualShape s) {
 		Mesh m = new Mesh();
 		
-		CreateGmodel(TopoDS_Shape.getCPtr(s.getShape2(TopoDS_Shape.class)));
+		CreateGmodel(TopoDS_Shape.getCPtr(s.getShape(TopoDS_Shape.class)));
 		SetMeshSize(0.1);
 		
 		TopExp_Explorer explorer = new TopExp_Explorer();
@@ -110,7 +110,7 @@ public class Mesher {
 //			break;
 //		}
 //		
-		for (explorer.init(s.getShape2(TopoDS_Shape.class), TopAbs_ShapeEnum.EDGE); explorer.more(); explorer.next())
+		for (explorer.init(s.getShape(TopoDS_Shape.class), TopAbs_ShapeEnum.EDGE); explorer.more(); explorer.next())
 		{						
 			TopoDS_Shape sh = explorer.current();
 			if (!(sh instanceof TopoDS_Edge)) continue; // should not happen!

@@ -314,9 +314,9 @@ public class Java3DViewer extends Canvas3D {
     	for (VisualShape v : drawModel.getPicture()) {
     		TransformGroup shapeGroup = new TransformGroup();
     		rotation.addChild(shapeGroup);
-    		BranchGroup faces = v.getFaces2(BranchGroup.class);
-    		BranchGroup edges = v.getEdges2(BranchGroup.class);    		    		
-    		BranchGroup text = v.getText2(BranchGroup.class);
+    		BranchGroup faces = v.getFaces(BranchGroup.class);
+    		BranchGroup edges = v.getEdges(BranchGroup.class);    		    		
+    		BranchGroup text = v.getText(BranchGroup.class);
     		if (faces == null && edges == null) continue;
     		i++;
     		if (faces != null) {    			
@@ -410,8 +410,8 @@ public class Java3DViewer extends Canvas3D {
     private Bounds getBounds(VisualShape v) {
     	Bounds b = null;
     	if (v == null) return null;
-		if (v.getFaces2(BranchGroup.class) != null) b = v.getFaces2(BranchGroup.class).getBounds();
-		if (v.getEdges2(BranchGroup.class) != null) b.combine(v.getEdges2(BranchGroup.class).getBounds());
+		if (v.getFaces(BranchGroup.class) != null) b = v.getFaces(BranchGroup.class).getBounds();
+		if (v.getEdges(BranchGroup.class) != null) b.combine(v.getEdges(BranchGroup.class).getBounds());
 		return b;
     }
     

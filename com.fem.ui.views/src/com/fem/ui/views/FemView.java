@@ -24,7 +24,7 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.fem.api.IDrawModel;
 import com.fem.api.IFemView;
-import com.fem.ui.views.document.listener.CommandDocumentListener;
+//import com.fem.ui.views.document.listener.CommandDocumentListener;
 import com.fem.views.annotations.AnnotationConfiguration;
 import com.fem.views.annotations.AnnotationHover;
 import com.fem.views.annotations.AnnotationMarkerAccess;
@@ -53,7 +53,7 @@ public class FemView extends ViewPart implements IFemView{
 	
 	
 	private SourceViewer textviewer;
-	private CommandDocumentListener listener;
+//	private CommandDocumentListener listener;
 
 	private Document document;
 
@@ -120,8 +120,8 @@ public class FemView extends ViewPart implements IFemView{
  		      Position position = new Position(0, 4);
  		      annotationModel.addAnnotation(annotation, position);
  		      
- 		      listener = new CommandDocumentListener();
-		 	  textviewer.addTextListener(listener);
+// 		      listener = new CommandDocumentListener();
+//		 	  textviewer.addTextListener(listener);
 	  }
 
 	private OverviewRuler createOverviewRuler(ISharedTextColors colorManager, AnnotationMarkerAccess fAnnotationAccess) {
@@ -172,7 +172,7 @@ public class FemView extends ViewPart implements IFemView{
 	@Override
 	public void update(Observable model, Object arg) {
 		IDrawModel drawModel = (IDrawModel) model;
-		listener.setModel(drawModel);
+//		listener.setModel(drawModel);
 	}
 
 }

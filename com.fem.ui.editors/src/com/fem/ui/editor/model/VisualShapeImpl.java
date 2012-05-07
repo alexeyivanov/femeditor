@@ -29,11 +29,6 @@ public class VisualShapeImpl implements VisualShape {
 	
 	private TopoDS_Shape shape = null;  //OCC base shape. Can be null if we have MESH type 
 
-	public TopoDS_Shape getShape() {
-		return shape;
-	}
-
-
 //	private List<FaceMesh> faceMeshes; // face meshes of OCC shape
 //	private List<float[]> edgeArrays; // edge arrays of OCC shape
 	
@@ -130,7 +125,7 @@ public class VisualShapeImpl implements VisualShape {
 	}
 	
 	public void drawShape() {
-		if (getShape() == null) return;
+		if (shape == null) return;
 		drawMesh = false;		
 	}
 	
@@ -144,18 +139,6 @@ public class VisualShapeImpl implements VisualShape {
 		
 	public int getType() {
 		return type;
-	}
-	
-	public BranchGroup getFaces() {
-		if (drawMesh) return mesh.getFaces(); else return facesNode;
-	}
-	
-	public BranchGroup getEdges() {
-		if (drawMesh) return mesh.getEdges(); else 	return edgesNode;
-	}
-	
-	public BranchGroup getText() {
-		if (drawMesh) return mesh.getText(); else return null;
 	}
 	
 	public Bounds getBounds() {
@@ -203,7 +186,7 @@ public class VisualShapeImpl implements VisualShape {
 	public void setMeshSize(double x, double y, double z, double size) {
 
 		if (vertexMeshSize == null) {
-			vertexMeshSize = OCCUtils.getShapeVertices(getShape(), meshSize);
+			vertexMeshSize = OCCUtils.getShapeVertices(shape, meshSize);
 		}
 		
 		double minDist = Double.MAX_VALUE;
@@ -226,7 +209,7 @@ public class VisualShapeImpl implements VisualShape {
 			return null;		
 		}
 		
-		return OCCUtils.haveCommon(this.getShape(), this.getType(), s.getShape(), s.getType());
+		return OCCUtils.haveCommon(shape, this.getType(), s.getShape(), s.getType());
 	}
 	
 	public void setMeshSize(Point3d p, double size) {
@@ -239,7 +222,7 @@ public class VisualShapeImpl implements VisualShape {
 	
 	public void setMeshSize(double x, double y, double z, int n) {
 		if (edgeMeshSize == null) {
-			edgeMeshSize = OCCUtils.getShapeEdges(getShape());
+			edgeMeshSize = OCCUtils.getShapeEdges(shape);
 		}
 
 		double minDist = Double.MAX_VALUE;
@@ -258,7 +241,7 @@ public class VisualShapeImpl implements VisualShape {
 	
 	public void mesh() {
 		Mesh m = new Mesh(vs);
-		Mesher.CreateGmodel(TopoDS_Shape.getCPtr(getShape()));
+		Mesher.CreateGmodel(TopoDS_Shape.getCPtr(shape));
 		Mesher.SetMeshSize(meshSize);
 		if (vertexMeshSize != null) {
 			
@@ -286,28 +269,25 @@ public class VisualShapeImpl implements VisualShape {
 	}
 
 	@Override
-	public <T> T getFaces2(Class<T> clazz) {
-		// TODO Auto-generated method stub
-		return (T) getFaces();
+	public <T> T getFaces(Class<T> clazz) {
+		if (drawMesh) return (T) mesh.getFaces(); else return (T) facesNode;
 	}
 
 	@Override
-	public <T> T getEdges2(Class<T> clazz) {
-		// TODO Auto-generated method stub
-		return (T) getEdges();
+	public <T> T getEdges(Class<T> clazz) {
+		if (drawMesh) return (T) mesh.getEdges(); else 	return (T) edgesNode;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public <K> K getShape2(Class<K> clazz) {
+	public <K> K getShape(Class<K> clazz) {
 		// TODO Auto-generated method stub
-		return (K) getShape();
+		return (K) shape;
 	}
 
 	@Override
-	public <T> T getText2(Class<T> clazz) {
-		// TODO Auto-generated method stub
-		return (T) getText();
+	public <T> T getText(Class<T> clazz) {
+		if (drawMesh) return (T) mesh.getText(); else return null;
 	}
 
 	@Override
@@ -335,7 +315,7 @@ public class VisualShapeImpl implements VisualShape {
 			return null;		
 		}
 		
-		return (T) OCCUtils.haveCommon(this.getShape2(TopoDS_Shape.class), this.getType(), s.getShape2(TopoDS_Shape.class), s.getType());
+		return (T) OCCUtils.haveCommon(this.getShape(TopoDS_Shape.class), this.getType(), s.getShape(TopoDS_Shape.class), s.getType());
 	}
 
 	@Override
