@@ -28,6 +28,7 @@
          <view
                closeable="true"
                id="com.fem.ui.views.commandView"
+               moveable="true"
                ratio="0.3f"
                relationship="left"
                relative="org.eclipse.ui.editorss"
@@ -85,11 +86,11 @@
          </property>
          <property
                name="aboutImage"
-               value="icons/product_lg.gif">
+               value="icons/logo128.png">
          </property>
          <property
                name="windowImages"
-               value="icons/alt_window_32.gif">
+               value="icons/logo32.png">
          </property>
       </product>
    </extension>

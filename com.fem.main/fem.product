@@ -4,7 +4,7 @@
 <product name="FEM" id="com.fem.main.product" application="com.fem.main.application" version="1.0.0.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
-      <image path="/com.fem.main/icons/product_lg.gif"/>
+      <image path="/com.fem.main/icons/logo128.png"/>
    </aboutInfo>
 
    <configIni use="default">
@@ -16,6 +16,7 @@
 
    <windowImages i32="/com.fem.main/icons/alt_window_32.gif"/>
 
+
    <launcher>
       <solaris/>
       <win useIco="false">
@@ -23,8 +24,10 @@
       </win>
    </launcher>
 
+
    <vm>
    </vm>
+
 
    <plugins>
       <plugin id="com.fem.main"/>

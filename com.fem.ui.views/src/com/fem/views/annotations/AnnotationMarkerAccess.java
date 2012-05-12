@@ -25,7 +25,7 @@ public class AnnotationMarkerAccess implements IAnnotationAccess, IAnnotationAcc
 
 	public String getTypeLabel(Annotation annotation) {
 		if (annotation instanceof ErrorAnnotation) {
-			return "Errors";
+			return "Fem Errors";
 		}
 		return null;
 	}
