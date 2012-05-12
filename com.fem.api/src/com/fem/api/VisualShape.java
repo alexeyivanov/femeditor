@@ -24,14 +24,14 @@ public interface VisualShape {
 	
 	<T> T haveCommon(final VisualShape s, final Class<T> clazz);
 	<T> T getBounds(final Class<T> clazz);
-	<T> T getFaces2(Class<T> clazz);
-	<T> T getEdges2(Class<T> clazz);
-	<T> T getText2(Class<T> clazz);
+	<T> T getFaces(Class<T> clazz);
+	<T> T getEdges(Class<T> clazz);
+	<T> T getText(Class<T> clazz);
 	
 	void setShape(GeometryShape geometryShape);
 	
 	<K> void setShape(K shape, Class<K> clazz);
-	<K> K getShape2(Class<K> clazz);
+	<K> K getShape(Class<K> clazz);
 	
 //	Mesh getMesh();
 	
