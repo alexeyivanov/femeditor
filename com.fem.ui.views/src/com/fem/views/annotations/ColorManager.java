@@ -31,11 +31,14 @@ public class ColorManager implements ISharedTextColors {
 	public static final RGB ERROR = new RGB(255, 0, 0);
 	public static final RGB WARNING = new RGB(201, 135, 47);
 	public static final RGB VARIABLE_HOVER = new RGB(0, 0, 255);
+	
+	public static final RGB FEM_COMMENT = new RGB(128, 0, 0);
+	public static final RGB FEM_PROPOSAL_BG = new RGB(230,255,230);
 
 	private static Map<RGB, Color> colorTable;
 	private static ColorManager instance;
 
-	private ColorManager() {
+	public ColorManager() {
 		if (colorTable == null) {
 			colorTable = new HashMap<RGB, Color>();
 		}
