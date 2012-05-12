@@ -149,11 +149,6 @@ public class FemView extends ViewPart implements IFemView{
 
 					event.doit = false;
 				}
-//				if (event.character =='\b'){
-//				    System.err.println("backspace");
-////				    updater.removeErrorAnnotation(lineNumber)
-//				 
-//			 }
 			}
 		});
 	}
