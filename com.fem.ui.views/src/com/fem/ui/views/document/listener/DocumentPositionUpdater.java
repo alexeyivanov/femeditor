@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
+import javax.management.ReflectionException;
+
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentEvent;
 import org.eclipse.jface.text.IDocument;
@@ -15,9 +17,17 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.handlers.HandlerUtil;
 
+import com.fem.api.IDrawModel;
+import com.fem.ui.editors.FemEditor;
 import com.fem.ui.views.FemView;
 import com.fem.views.annotations.ErrorAnnotation;
+import com.vem.views.utils.ReflectionUtils;
 import com.vem.views.utils.TextUtils;
 
 public class DocumentPositionUpdater implements IPositionUpdater {
@@ -102,6 +112,32 @@ public class DocumentPositionUpdater implements IPositionUpdater {
 			
 			
 			logger.info(params.length + "");
+			
+			
+//			IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(new DocumentEvent()).getActivePage();
+			
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			IEditorPart activeEditor = page.getActiveEditor();
+			if(activeEditor != null && activeEditor instanceof FemEditor) {
+				IDrawModel model = (IDrawModel) activeEditor.getEditorInput().getAdapter(IDrawModel.class);
+				
+				Class[] classesParam= new Class[0];
+				if(params != null && params.length > 0) {
+					classesParam = new Class[params == null ? 0 : params.length];
+					
+					for (int i = 0; i < params.length; i++) {
+						classesParam[i] = double.class;
+			    	}
+				}
+				
+				Method method = ReflectionUtils.findMethod(model.getClass(), methodName, classesParam);
+				
+				ReflectionUtils.invokeMethod(method, model, toDoubleArray(params));
+				
+				model.notifyAllObservers();
+				
+			}
+			
     	}
 			
 //			Class<?>[] types = new Class[] {value.getClass()};
@@ -114,10 +150,23 @@ public class DocumentPositionUpdater implements IPositionUpdater {
 	}
 
 
+    private Object[] toDoubleArray(String[] args) {
+    	
+    	if(args == null) {
+    		return new Object[0];
+    	}
+    	
+    	final Object[] result = new Object[args.length];
+    	for (int i = 0; i < args.length; i++) {
+    		result[i] = Double.valueOf(args[i]);
+    	}
+    	
+    	return result;
+    }
 
 	private boolean existSuchCommand(String command) {
     	for (String cmd : femCommands.keySet()) {
-			if(command.equals(cmd)){
+			if(command.equals(cmd) || (command.indexOf('(') > -1 && cmd.startsWith(command.substring(0, command.indexOf('('))))){
 				return true;
 			}
 		}
