@@ -15,8 +15,8 @@ public class Java3DViewerTester {
 //		IDrawModel d = drawWall2();
 		IDrawModel d = drawFN2();
 		
-//		d.setMeshSize(0.1);
-//		d.meshAll();
+		d.setMeshSize(0.1);
+		d.meshAll();
 		
 		Java3DViewer.view(d);
 	}

@@ -120,8 +120,9 @@ public class DocumentPositionUpdater implements IPositionUpdater {
 			IEditorPart activeEditor = page.getActiveEditor();
 			if(activeEditor != null && activeEditor instanceof FemEditor) {
 				IDrawModel model = (IDrawModel) activeEditor.getEditorInput().getAdapter(IDrawModel.class);
-				
+
 				Class[] classesParam = new Class[0];
+				
 				if(params != null && params.length > 0 && params[0].trim().length() > 0) {
 					classesParam = new Class[params == null ? 0 : params.length];
 					
