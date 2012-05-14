@@ -1,19 +1,17 @@
 package com.fem.views.annotations;
 
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.core.resources.IMarker;
 
 public class ErrorAnnotation extends Annotation {
 	private IMarker marker;
 	private String text;
 	private int line;
-	public static final String ANNO_TYPE = "com.fem.element";
-	private String type = ANNO_TYPE;
+	private String type;
 	private Position position;
-	private Image image = new Image(Display.getDefault(), "c://error.gif");
+	private Image image = ImageCache.getImage("error.gif");
 
 	public ErrorAnnotation(IMarker marker) {
 		this.marker = marker;

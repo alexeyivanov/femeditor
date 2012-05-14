@@ -14,8 +14,7 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
-   <windowImages i32="/com.fem.main/icons/alt_window_32.gif"/>
-
+   <windowImages i32="/com.fem.main/icons/logo32.png"/>
 
    <launcher>
       <solaris/>
@@ -27,7 +26,6 @@
 
    <vm>
    </vm>
-
 
    <plugins>
       <plugin id="com.fem.main"/>
