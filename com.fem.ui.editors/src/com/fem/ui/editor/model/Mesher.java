@@ -1,21 +1,19 @@
 package com.fem.ui.editor.model;
 
-import org.jcae.opencascade.jni.BRepPrimAPI_MakeRevol;
+import org.jcae.opencascade.jni.BRepPrimAPI_MakeBox;
 import org.jcae.opencascade.jni.TopAbs_ShapeEnum;
 import org.jcae.opencascade.jni.TopExp_Explorer;
-import org.jcae.opencascade.jni.TopoDS_Face;
-import org.jcae.opencascade.jni.TopoDS_Shape;
-import org.jcae.opencascade.jni.TopoDS_Solid;
-import org.jcae.opencascade.jni.TopoDS_Vertex;
 import org.jcae.opencascade.jni.TopoDS_Edge;
+import org.jcae.opencascade.jni.TopoDS_Shape;
 
+import com.fem.api.IDrawModel;
 import com.fem.api.VisualShape;
 
 
 public class Mesher {
 	
 	static {
-		System.load("c:/AllLib/AllLib/Gmsh/Gmsh.dll");
+		System.load("c:/Users/aivanov/Downloads/AllLib/AllLib/Gmsh/Gmsh.dll");
 	}
 	//TopoDS_Shape s
 	public static native void CreateGmodel(long s);
@@ -150,5 +148,32 @@ public class Mesher {
 		return m;
 	}
 	
+	public static void main(String args[]) {		
+    	
+		System.out.println(System.getProperty("java.library.path"));
+		Mesher m= new Mesher();
+    	double d[];
+    	int it[];
+    	
+    	IDrawModel dr = new DrawModelImpl(new VisualSettingsFactoryJava3DImpl());
+    	dr.setGeometryShapeManager(new GeometryShapeManagerOCC());
+    	dr.setDrawShapeModelManager(new VisualShapeManagerImpl());
+    	
+		VisualShape cube = dr.box(0.1, 0.1, 0.1);
+		
+		
+		TopoDS_Shape box=new BRepPrimAPI_MakeBox(
+				new double[]{0,0,0},
+				new double[]{1,1,1}
+				).shape();
+		
+    	m.CreateGmodel(TopoDS_Shape.getCPtr(box));
+        d=m.MeshShape();
+        it=m.Indtetr();
+        for (int i=0; i<d.length; i++)
+        	System.out.println(d[i]);
+        for (int i=0; i<it.length; i++)
+        	System.out.println(it[i]);
+    }
 	
 }
