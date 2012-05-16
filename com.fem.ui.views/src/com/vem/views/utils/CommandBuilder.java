@@ -2,9 +2,7 @@ package com.vem.views.utils;
 
 import java.util.HashMap;
 import java.util.Map;
-/*
- * CommandBuilder
- */
+
 public class CommandBuilder {
 	
 	
@@ -20,6 +18,7 @@ public class CommandBuilder {
 		result.put("cone(double baseRadius, double topRadius, double h, double angle)", "draw cone");
 		result.put("move(double x, double y, double z)", "move element");
 		result.put("cut(VisualShape s1, VisualShape s2)", "cut some element");
+		result.put("lineTo(double x, double y, double z)", "draw line");
 		return result;
 	}
 

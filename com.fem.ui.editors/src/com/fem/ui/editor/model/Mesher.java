@@ -13,7 +13,7 @@ import com.fem.api.VisualShape;
 public class Mesher {
 	
 	static {
-		System.load("c:/Users/aivanov/Downloads/AllLib/AllLib/Gmsh/Gmsh.dll");
+		System.load("C:/AllLib/AllLib/Gmsh/Gmsh.dll");
 	}
 	//TopoDS_Shape s
 	public static native void CreateGmodel(long s);

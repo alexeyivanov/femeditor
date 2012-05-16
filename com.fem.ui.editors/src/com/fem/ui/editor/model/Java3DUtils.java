@@ -44,13 +44,13 @@ public class Java3DUtils {
 		
 		Iterator<FaceMesh> it = faceMeshes.iterator();
 		
-		BranchGroup toReturn=new BranchGroup();
+		BranchGroup toReturn = new BranchGroup();
 		toReturn.setCapability(BranchGroup.ALLOW_DETACH);
-		int n=0;
+		int n = 0;
 		
 		while(it.hasNext())
 		{			
-			FaceMesh fm=it.next();
+			FaceMesh fm = it.next();
 			
 			//Case of an unmeshed face
 			if(fm.getNodes().length==0){
@@ -62,21 +62,21 @@ public class Java3DUtils {
 			
 			OCCUtils.reverseMesh(reversed);
 			
-			GeometryInfo gi=new GeometryInfo(GeometryInfo.TRIANGLE_ARRAY);
-			gi.setCoordinates(fm.getNodes());
-			gi.setCoordinateIndices(fm.getMesh());			
-			NormalGenerator ng = new NormalGenerator();
-			ng.generateNormals(gi);
+			GeometryInfo geometryInfo = new GeometryInfo(GeometryInfo.TRIANGLE_ARRAY);
+			geometryInfo.setCoordinates(fm.getNodes());
+			geometryInfo.setCoordinateIndices(fm.getMesh());			
+			NormalGenerator normalGenerator = new NormalGenerator();
+			normalGenerator.generateNormals(geometryInfo);
 			Stripifier st = new Stripifier();
-			st.stripify(gi);
+			st.stripify(geometryInfo);
 	        
-			GeometryArray g=gi.getGeometryArray();
-			g.setCapability(GeometryArray.ALLOW_COUNT_READ);
-			g.setCapability(GeometryArray.ALLOW_FORMAT_READ);
-			g.setCapability(GeometryArray.ALLOW_COORDINATE_READ);
-			g.setCapability(IndexedGeometryArray.ALLOW_COORDINATE_INDEX_READ);	
+			GeometryArray geometryArray = geometryInfo.getGeometryArray();
+			geometryArray.setCapability(GeometryArray.ALLOW_COUNT_READ);
+			geometryArray.setCapability(GeometryArray.ALLOW_FORMAT_READ);
+			geometryArray.setCapability(GeometryArray.ALLOW_COORDINATE_READ);
+			geometryArray.setCapability(IndexedGeometryArray.ALLOW_COORDINATE_INDEX_READ);	
 			 
-			Shape3D shape3d=new Shape3D(g);
+			Shape3D shape3d = new Shape3D(geometryArray);
 			shape3d.setAppearance(vs.getFaceAppearance(Appearance.class));
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);			
@@ -86,15 +86,15 @@ public class Java3DUtils {
 			faces.add(shape3d);
 			
 			
-			gi=new GeometryInfo(GeometryInfo.TRIANGLE_ARRAY);
-			gi.setCoordinates(fm.getNodes());
-			gi.setCoordinateIndices(reversed);
-			ng.generateNormals(gi);
+			geometryInfo = new GeometryInfo(GeometryInfo.TRIANGLE_ARRAY);
+			geometryInfo.setCoordinates(fm.getNodes());
+			geometryInfo.setCoordinateIndices(reversed);
+			normalGenerator.generateNormals(geometryInfo);
 			st = new Stripifier();
-			st.stripify(gi);
-			g=gi.getGeometryArray();
+			st.stripify(geometryInfo);
+			geometryArray = geometryInfo.getGeometryArray();
 			
-			shape3d=new Shape3D(g);
+			shape3d = new Shape3D(geometryArray);
 			shape3d.setAppearance(vs.getFaceAppearance(Appearance.class));
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_READ);
 			shape3d.setCapability(Shape3D.ALLOW_APPEARANCE_WRITE);

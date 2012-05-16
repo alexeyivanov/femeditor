@@ -20,7 +20,8 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	private Coordinate position = new Coordinate(0, 0, 0);
 	private Coordinate direction = new Coordinate(0, 1, 0);
 	private VisualSettings vs;
-	private boolean checkIntersection = true, virtualDrawingMode = false;
+	private boolean checkIntersection = true;
+	private boolean virtualDrawingMode = false;
 	private VisualShape lastEdge = null;
 	private Coordinate firstPoint = new Coordinate(0,0,0);
 	
@@ -30,8 +31,6 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	private GeometryShapeManager geometryShapeManager;
 	private VisualShapeManager visualShapeManager;
 	private VisualSettingsFactory visualSettingsFactory;
-	
-//	private String modelInfo;
 	
 	
 	private String uid;
@@ -343,7 +342,9 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	
 	public void setDirection(double x, double y, double z) {
 		double r = Math.sqrt(x*x+y*y+z*z);
-		if (r < 1E-10) return;
+		if (r < 1E-10){
+			return;
+		}
 		direction.setXYZ(x/r, y/r, z/r);
 	}
 	
@@ -753,8 +754,11 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	public void deleteSelected() {
 		int i = 0;
 		while (i < shapeList.size()) {
-			if (shapeList.get(i).isSelected()) shapeList.remove(i);
-			else i++;
+			if (shapeList.get(i).isSelected()){
+				shapeList.remove(i);
+			}else{ 
+				i++;
+			}
 		}
 	}
 	
@@ -804,20 +808,27 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	
 	
 	public VisualShape add(VisualShape shape) {
-		if (virtualDrawingMode) return shape;
-		if (checkIntersection) commonList.clear();
-		if (checkIntersection) return checkIntersection(shape); else shapeList.add(shape);
-		
-		
+		if (virtualDrawingMode){
+			return shape;
+		}
+		if (checkIntersection){
+			commonList.clear();
+		}
+		if (checkIntersection){
+			return checkIntersection(shape); 
+		}else{
+			shapeList.add(shape);
+		}
 		shapeList.add(shape);
-		
 		return shape;
 	}
 
 	public VisualShape[] getPicture() {
-		VisualShape[] arr = new VisualShape[shapeList.size()];
-		for (int i = 0; i < shapeList.size(); i++) arr[i] = shapeList.get(i);
-		return arr;
+		VisualShape[] shapes = new VisualShape[shapeList.size()];
+		for (int i = 0; i < shapeList.size(); i++){
+			shapes[i] = shapeList.get(i);
+		}
+		return shapes;
 	}
 	
 	 /**
@@ -827,8 +838,9 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 
 	@Override
 	public Object getAdapter(Class adapter) {
-		 if(adapter.isAssignableFrom(this.getClass()))
-	            return this;
+		 if(adapter.isAssignableFrom(this.getClass())){
+			 return this;
+		 }
 	        return null;
 	}
 

@@ -145,8 +145,6 @@ public class FemView extends ViewPart implements IFemView{
 					if (textviewer.canDoOperation(SourceViewer.CONTENTASSIST_PROPOSALS)){
 						textviewer.doOperation(SourceViewer.CONTENTASSIST_PROPOSALS);
 					}
-
-
 					event.doit = false;
 				}
 			}

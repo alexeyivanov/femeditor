@@ -34,6 +34,7 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 	
 	private Java3DViewer viewer;
 	
+	
 
 	
 
@@ -86,28 +87,36 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 		
 		IDrawModel model = (IDrawModel) input.getAdapter(IDrawModel.class);
 		
-		
-		
 		topComposite = new Composite(parent, SWT.EMBEDDED | SWT.NO_BACKGROUND);
 
 		topComposite.setParent(parent.getParent());
+		frameAWT = SWT_AWT.new_Frame(topComposite);
+		viewer = new Java3DViewer(frameAWT, model);
+		
+		
 		parent.dispose();
 		parent = null;
-		frameAWT = SWT_AWT.new_Frame(topComposite);
 		
 //		frameAWT.setBounds(0, 0, 800, 600);
 //
 //		model.setFaceColor(Color.GREEN);
 //		model.circle(0.9);
-		
-		
-	    viewer = new Java3DViewer(frameAWT, model);
+	    
 		frameAWT.add(viewer);
 		
 		getSite().setSelectionProvider(this);
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
 
 	}
+	
+	
+	 private void createUndoRedoHandler() {
+	        IEditorSite site = getEditorSite();
+//	        UndoRedoActionGroup actionGroup = new UndoRedoActionGroup( site,
+//	                                                        widget.getUndoContext(),
+//	                                                        true );
+//	        actionGroup.fillActionBars( site.getActionBars() );
+	    }
 
 	@Override
 	public void setFocus() {

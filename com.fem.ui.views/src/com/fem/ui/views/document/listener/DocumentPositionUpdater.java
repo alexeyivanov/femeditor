@@ -4,10 +4,7 @@ import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-
-import javax.management.ReflectionException;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentEvent;
@@ -17,11 +14,9 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.swt.custom.StyledText;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.handlers.HandlerUtil;
 
 import com.fem.api.IDrawModel;
 import com.fem.ui.editors.FemEditor;
@@ -113,9 +108,7 @@ public class DocumentPositionUpdater implements IPositionUpdater {
 			
 			logger.info(params.length + "");
 			
-			
-//			IWorkbenchPage page = HandlerUtil.getActiveWorkbenchWindow(new DocumentEvent()).getActivePage();
-			
+			//temp solution
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			IEditorPart activeEditor = page.getActiveEditor();
 			if(activeEditor != null && activeEditor instanceof FemEditor) {
@@ -140,14 +133,6 @@ public class DocumentPositionUpdater implements IPositionUpdater {
 			}
 			
     	}
-			
-//			Class<?>[] types = new Class[] {value.getClass()};
-//			try {
-//				Method method = obj.getClass().getMethod(mname, types);
-//				method.invoke(obj, new Object[] { value });
-//			} catch (Exception e) {
-//				logger.error("Unable to invoke method " + methodName + " in class " + obj.getClass().getName(), e);
-//			}
 	}
 
 

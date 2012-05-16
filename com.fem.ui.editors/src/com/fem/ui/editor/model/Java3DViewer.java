@@ -1,6 +1,5 @@
 package com.fem.ui.editor.model;
 
-import java.awt.Color;
 import java.awt.Frame;
 import java.awt.GraphicsConfigTemplate;
 import java.awt.GraphicsConfiguration;
@@ -8,10 +7,9 @@ import java.awt.GraphicsDevice;
 import java.awt.Window;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.media.j3d.AmbientLight;
 import javax.media.j3d.Background;
@@ -22,11 +20,8 @@ import javax.media.j3d.Canvas3D;
 import javax.media.j3d.DirectionalLight;
 import javax.media.j3d.GraphicsConfigTemplate3D;
 import javax.media.j3d.Node;
-import javax.media.j3d.PickInfo;
-import javax.media.j3d.Shape3D;
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
-import javax.swing.JFrame;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
@@ -40,8 +35,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.fem.api.IDrawModel;
 import com.fem.api.VisualShape;
-import com.sun.j3d.utils.pickfast.PickTool;
-import com.sun.j3d.utils.pickfast.behaviors.PickMouseBehavior;
+import com.fem.ui.editors.listeners.KeyMouseListener;
 import com.sun.j3d.utils.universe.SimpleUniverse;
 
 public class Java3DViewer extends Canvas3D {
@@ -52,10 +46,13 @@ public class Java3DViewer extends Canvas3D {
 	private static final long serialVersionUID = 1L;
 	
 	private SimpleUniverse universe = null;
-	private BranchGroup root = null, view = null;
+	private BranchGroup root = null;
+	private BranchGroup	view = null;
 	private TransformGroup rotation;
 	private BoundingSphere bounds;
-	private float angleV = 0, angleH = 0, angleStep = (float)Math.PI / 20;
+	private float angleV = 0; 
+	private float angleH = 0; 
+	private float angleStep = (float)Math.PI / 20;
 	private float lastAngleV = 0, lastAngleH = 0;
 	private Point3d center = new Point3d(0,0,0);	
 	private float scale = 1;
@@ -63,141 +60,44 @@ public class Java3DViewer extends Canvas3D {
 	private List<TransformGroup> textLabels = new ArrayList<TransformGroup>();
 	
 	
-	private class KeyListener extends KeyAdapter
-	{
-		
-		@Override
-		public void keyPressed(KeyEvent e)
-		{
-			boolean found=true;
-			switch(e.getKeyCode())
-			{
-				case KeyEvent.VK_RIGHT: rotateV(angleStep); break;
-				case KeyEvent.VK_LEFT: rotateV(-angleStep); break;
-				case KeyEvent.VK_UP: rotateH(-angleStep); break;
-				case KeyEvent.VK_DOWN: rotateH(angleStep); break;
-				case KeyEvent.VK_DELETE: drawModel.deleteSelected(); draw(drawModel); break;
-				default: found=false;
-			}
-			if(found)
-			{
-			
-			}
-		}
-				
-	}
+	private Logger logger =  Logger.getLogger(Java3DViewer.class.getName());
 	
-	public class PickMouse extends PickMouseBehavior {
+	
+	
+	    
 
-//		protected int x_last, y_last;
-		
-		public PickMouse(Canvas3D canvas, BranchGroup root, Bounds bounds) {
-			super(canvas, root, bounds);
-			pickCanvas.setMode(PickInfo.PICK_GEOMETRY);			
-			this.setSchedulingBounds(bounds);
-		}
 
-		@Override
-		public void updateScene(int xpos, int ypos) {
-			// TODO Auto-generated method stub
-//			
-//			if ((mevent.getID() == MouseEvent.MOUSE_DRAGGED) &&
-//					!mevent.isAltDown() && mevent.isMetaDown()) {
-//					
-////			if (mevent.getID() == MouseEvent.MOUSE_DRAGGED) {
-//					int x = mevent.getX();
-//					int y = mevent.getY();
-//					
-//					int dx = x - x_last;
-//					int dy = y - y_last;
-//					
-//					center.x += dx * 0.02;
-//					center.y -= dy * 0.02;
-//					
-//					x_last = x;
-//					y_last = y;
-//					updateView();
+//	private class KeyListener extends KeyAdapter
+//	{
+//		
+//		@Override
+//		public void keyPressed(KeyEvent e)
+//		{
+//			boolean found=true;
+//			switch(e.getKeyCode())
+//			{
+//				case KeyEvent.VK_RIGHT:
+//					rotateV(getAngleStep());
+//					break;
+//				case KeyEvent.VK_LEFT: rotateV(-getAngleStep()); break;
+//				case KeyEvent.VK_UP: rotateH(-getAngleStep()); break;
+//				case KeyEvent.VK_DOWN: rotateH(getAngleStep()); break;
+//				case KeyEvent.VK_DELETE: drawModel.deleteSelected(); draw(drawModel); break;
+//				default: found=false;
 //			}
-//			else if (mevent.getID() == MouseEvent.MOUSE_PRESSED) {
-//				x_last = mevent	.getX();
-//				y_last = mevent.getY();
+//			if(found)
+//			{
+//			
 //			}
-//			
-//			
-		    
-			if (!mevent.isMetaDown() && !mevent.isAltDown()){
-				BranchGroup bg = null;
-				Shape3D s = null;
-				pickCanvas.setFlags(PickInfo.NODE | PickInfo.SCENEGRAPHPATH | PickInfo.CLOSEST_INTERSECTION_POINT);
-				pickCanvas.setShapeLocation(xpos, ypos);
-				
-			
-				PickInfo pickInfo = pickCanvas.pickClosest();				
-				if(pickInfo != null) {
-//					if (drawing instanceof Mesh) {
-//						Point3d p = pickInfo.getClosestIntersectionPoint();
-//						
-//						Mesh m = (Mesh)drawing;
-//						MeshPoint mp = m.find(p.x, p.y, p.z);
-//						if (mp != null) mp.select();
-//						
-//						m.setLineColor(Color.GREEN);
-//						m.setLineWidth(5);
-////						createSceneGraph(drawing);
-//						
-////						view.detach();						
-//						draw(drawing);
-////						root.addChild(view);
-//						return;
-//					}
-					
-					System.out.println(pickInfo.getClosestIntersectionPoint());					
-					
-					bg = (BranchGroup) pickCanvas.getNode(pickInfo, PickTool.TYPE_BRANCH_GROUP);
-//					s = (Shape3D) pickCanvas.getNode(pickInfo, PickTool.TYPE_SHAPE3D);					
-					
-					if (bg != null) {
-						System.out.println("Shape "+bg.getName()+" selected");
-						if (bg.getUserData() != null) {
-							VisualShape sh = (VisualShape) bg.getUserData();
-							
-//							TODO get Mesh
-							
-//							Mesh m = sh.getMesh();
-//							if (m != null) {
-//								Point3d p3d = pickInfo.getClosestIntersectionPoint();
-//								m.selectNearestPoint(p3d.x, p3d.y, p3d.z);
-//								m.createTextLabels();
-//								System.out.println("Result = " + m.getResult(p3d.x, p3d.y, p3d.z));
-//								draw(drawModel);
-//							}
-//							else {
-//								sh.select();
-////								drawing.meshShape(sh);
-////								draw(drawing);
-//							}
-							
-//							Visible v = (Visible) bg.getUserData();
-//							v.select();							
-						}						
-					}
-					
-//					if (s != null) {
-//						System.out.println("Shape "+s.getName()+" selected");
-//						if (s.getUserData() != null) {
-//							Visible v = (Visible) s.getUserData();
-//							v.select();	
-//						}
-//						
-//					}
-					
-			    } 
-			}
-		}
+//		}
+//				
+//	}
+	
+	protected void setDirty(boolean isDirty) {
 		
 	}
 	
-	private void updateView() {
+	public void updateView() {
 		Transform3D rotateXY = new Transform3D();
 	
 	
@@ -230,12 +130,12 @@ public class Java3DViewer extends Canvas3D {
 		lastAngleV = angleV;
 	}
 	
-	private void rotateV(float angle) {
+	public void rotateV(float angle) {
 		angleV += angle;
 		updateView();		
 	}
 	
-	private void rotateH(float angle) {
+	public void rotateH(float angle) {
 		angleH += angle;
 		updateView();		
 	}
@@ -247,7 +147,9 @@ public class Java3DViewer extends Canvas3D {
 		universe.getViewingPlatform().setNominalViewingTransform();
 		root = new BranchGroup();
 		root.setCapability(BranchGroup.ALLOW_CHILDREN_WRITE);
-		root.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);		
+		root.setCapability(BranchGroup.ALLOW_CHILDREN_EXTEND);	
+		// Let Java 3D perform optimizations on this scene graph.
+		root.compile();
 		createSceneGraph(drawModel);
 		universe.addBranchGraph(root);
 		
@@ -277,26 +179,22 @@ public class Java3DViewer extends Canvas3D {
 		background.setColor(1.0f, 1.0f, 1.0f);
 		background.setApplicationBounds(bounds);
 		view.addChild(background);
-		
-//		MouseRotate myMouseRotate = new MouseRotate();
-//        myMouseRotate.setTransformGroup(rotation);
-//        myMouseRotate.setSchedulingBounds(bounds);
-//        root.addChild(myMouseRotate);
-//
-//        MouseTranslate myMouseTranslate = new MouseTranslate();
-//        myMouseTranslate.setTransformGroup(rotation);
-//        myMouseTranslate.setSchedulingBounds(new BoundingSphere());
-//        root.addChild(myMouseTranslate);
-
-//        MouseZoom myMouseZoom = new MouseZoom();
-//        myMouseZoom.setTransformGroup(rotation);        
-//        myMouseZoom.setSchedulingBounds(new BoundingSphere());
-//        root.addChild(myMouseZoom);
         		//		
-		PickMouse pick = new PickMouse(this, view, bounds);
-		view.addChild(pick);        
+//		PickMouse pick = new PickMouse(this, view, bounds);
+//		view.addChild(pick);        
+//		
+//		addKeyListener(new KeyListener());
 		
-		addKeyListener(new KeyListener());
+//		    KeyNavigatorBehavior keyNavBeh = new KeyNavigatorBehavior(universe.getViewingPlatform().getViewPlatformTransform());
+//	        keyNavBeh.setSchedulingBounds(bounds);
+////	        keyNavBeh.s
+//	        view.addChild(keyNavBeh);
+		
+		
+	        KeyMouseListener keyNavBeh = new KeyMouseListener(this, view, bounds);
+	        keyNavBeh.setTransformGroup(rotation);
+//	        keyNavBeh.setViewingPlatform(universe.getViewingPlatform());
+	        view.addChild(keyNavBeh);
 		
 		angleV = (float)Math.PI/4;
 		angleH = (float)Math.PI/5;
@@ -305,36 +203,42 @@ public class Java3DViewer extends Canvas3D {
 		zoomAll();
 	}
 	
-	public void draw(IDrawModel d) {
+	public void draw(IDrawModel model) {
     	view.detach();
     	rotation.removeAllChildren();    	
-    	drawModel = d;
-    	if (drawModel.getPicture() == null) return;
-    	Integer i = 0;
-    	for (VisualShape v : drawModel.getPicture()) {
+    	drawModel = model;
+    	if (drawModel.getPicture() == null){
+    		logger.info("Warning!Picture is null");
+    		return;
+    	}
+    	Integer facesEdgesCounter = 0;
+    	for (VisualShape visualShape : drawModel.getPicture()) {
     		TransformGroup shapeGroup = new TransformGroup();
     		rotation.addChild(shapeGroup);
-    		BranchGroup faces = v.getFaces(BranchGroup.class);
-    		BranchGroup edges = v.getEdges(BranchGroup.class);    		    		
-    		BranchGroup text = v.getText(BranchGroup.class);
-    		if (faces == null && edges == null) continue;
-    		i++;
+    		BranchGroup faces = visualShape.getFaces(BranchGroup.class);
+    		BranchGroup edges = visualShape.getEdges(BranchGroup.class);    		    		
+    		BranchGroup text = visualShape.getText(BranchGroup.class);
+    		if (faces == null && edges == null){
+    			continue;
+    		}else{
+    			facesEdgesCounter++;
+    		}
     		if (faces != null) {    			
     			faces.detach();
     			rotation.addChild(faces);
     			faces.setPickable(true);
-        		faces.setUserData(v);
+        		faces.setUserData(visualShape);
         		faces.setCapability(TransformGroup.ENABLE_PICK_REPORTING);
-        		faces.setName(i.toString());
+        		faces.setName(facesEdgesCounter.toString());
    
     		}
     		if (edges != null) {
     			edges.detach();
     			rotation.addChild(edges);
     			edges.setPickable(true);
-        		edges.setUserData(v);
+        		edges.setUserData(visualShape);
         		edges.setCapability(TransformGroup.ENABLE_PICK_REPORTING);
-         		edges.setName(i.toString());
+         		edges.setName(facesEdgesCounter.toString());
     		}
     		
     		if (text != null) {
@@ -420,14 +324,18 @@ public class Java3DViewer extends Canvas3D {
     	boolean first = true;
     	for (VisualShape v : drawModel.getPicture()) {
     		Bounds b = getBounds(v);
-    		if (first) bounds.set(b); else bounds.combine(getBounds(v));
+    		if (first) {
+    			bounds.set(b);
+    		}else{
+    			bounds.combine(getBounds(v));
+    		}
     		first = false;
     	} 
     	bounds.getCenter(center);
     	scale = 1.0f/1.3f/(float)bounds.getRadius();
     	updateView();
     }
-    
+//    
     public static void viewAWT(IDrawModel d) {
 //		JFrame frame=new JFrame();
 //		frame.setBounds(0, 0, 500, 400);
@@ -519,6 +427,28 @@ public class Java3DViewer extends Canvas3D {
 		display.dispose();
 		System.exit(0);
 		
+	}
+
+
+	public float getAngleStep() {
+		return angleStep;
+	}
+
+	public void setAngleStep(float angleStep) {
+		this.angleStep = angleStep;
+	}
+
+	public void delete() {
+		drawModel.deleteSelected(); 
+		draw(drawModel);
+	}
+
+	public Point3d getCenter() {
+		return center;
+	}
+
+	public void setCenter(Point3d center) {
+		this.center = center;
 	}
 
 

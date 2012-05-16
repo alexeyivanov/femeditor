@@ -21,7 +21,7 @@ import com.fem.api.VisualShape;
 import com.fem.ui.editor.model.Shape.Edge;
 import com.fem.ui.editor.model.Shape.Vertex;
 
-public class VisualShapeImpl implements VisualShape {
+public class VisualShapeImpl implements VisualShape, Visible{
 
 	protected int type;
 	
@@ -348,6 +348,21 @@ public class VisualShapeImpl implements VisualShape {
 	@Override
 	public GeometryShape getGeometryShape() {
 		return commonShape;
+	}
+
+	@Override
+	public BranchGroup getFaces() {
+		return facesNode;
+	}
+
+	@Override
+	public BranchGroup getEdges() {
+		return edgesNode;
+	}
+
+	@Override
+	public BranchGroup getText() {
+		return null;
 	}
 	
 }
