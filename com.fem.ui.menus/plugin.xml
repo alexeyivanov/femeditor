@@ -155,11 +155,13 @@
             <command
                   commandId="com.fem.cmd.drawElement"
                   icon="icons/draw_element.gif"
+                  id="draw"
                   label="Draw Element"
                   style="push">
             </command>
             <command
                   commandId="com.fem.cmd.mesher"
+                  id="mehser"
                   label="Mesher"
                   style="push">
             </command>
