@@ -80,6 +80,10 @@
             id="com.fem.cmd.closeCmd"
             name="Close">
       </command>
+      <command
+            id="com.fem.cmd.mesher"
+            name="Mesher">
+      </command>
    </extension>
 
 </plugin>
