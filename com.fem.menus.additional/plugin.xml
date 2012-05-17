@@ -38,12 +38,20 @@
             </with>
          </activeWhen>
       </handler>
+      <handler
+            class="com.fem.menus.additional.cmd.Mesher"
+            commandId="com.fem.menus.additional.cmd.mesher">
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
       <command
             id="com.fem.menus.additional.cmd.drawElement"
             name="Draw Element">
+      </command>
+      <command
+            id="com.fem.menus.additional.cmd.mesher"
+            name="Mesher">
       </command>
    </extension>
    <extension
@@ -53,6 +61,12 @@
             contextId="org.eclipse.ui.contexts.window"
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="F6">
+      </key>
+      <key
+            commandId="com.fem.menus.additional.cmd.mesher"
+            contextId="org.eclipse.ui.contexts.window"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="F7">
       </key>
    </extension>
 

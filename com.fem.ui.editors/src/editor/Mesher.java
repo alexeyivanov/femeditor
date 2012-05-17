@@ -1,4 +1,4 @@
-package com.fem.ui.editor.model;
+package editor;
 
 import org.jcae.opencascade.jni.BRepPrimAPI_MakeBox;
 import org.jcae.opencascade.jni.TopAbs_ShapeEnum;
@@ -8,12 +8,19 @@ import org.jcae.opencascade.jni.TopoDS_Shape;
 
 import com.fem.api.IDrawModel;
 import com.fem.api.VisualShape;
+import com.fem.ui.editor.model.DrawModelImpl;
+import com.fem.ui.editor.model.GeometryShapeManagerOCC;
+import com.fem.ui.editor.model.Mesh;
+import com.fem.ui.editor.model.Shape;
+import com.fem.ui.editor.model.VisualSettingsFactoryJava3DImpl;
+import com.fem.ui.editor.model.VisualShapeManagerImpl;
 
 
 public class Mesher {
 	
 	static {
-		System.load("C:/AllLib/AllLib/Gmsh/Gmsh.dll");
+//		System.load("C:/AllLib/AllLib/Gmsh/Gmsh.dll");
+		System.load("c:/Users/aivanov/Downloads/AllLib/AllLib/Gmsh/Gmsh.dll");
 	}
 	//TopoDS_Shape s
 	public static native void CreateGmodel(long s);
@@ -135,11 +142,11 @@ public class Mesher {
 //	        	System.out.println(indtetr[i]);
 		
 		m.addPoints(points);
-//		m.setFaceColor(s.getVisualSettings().getFaceColor());
+		m.setFaceColor(s.getVisualSettings().getFaceColor());
 ////		m.addTetrahedrons(indtetr);
-//		m.setFaceColor(s.getVisualSettings().getFaceColor());
-//		m.addTriangles(indtrian);
-//		m.setLineColor(s.getVisualSettings().getLineColor());
+		m.setFaceColor(s.getVisualSettings().getFaceColor());
+		m.addTriangles(indtrian);
+		m.setLineColor(s.getVisualSettings().getLineColor());
 		m.addLines(indline);
 		
 //		for (int i = 0; i < indtetr.length; i+=4) {

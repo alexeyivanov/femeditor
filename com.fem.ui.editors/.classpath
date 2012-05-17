@@ -2,9 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
-	
 	<classpathentry kind="lib" path="lib/Jama/Jama-1.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/JFreeChart/servlet.jar"/>
 	<classpathentry kind="lib" path="lib/JCuda-All-0.4.0-beta1-bin-windows-x86_64/jcuda-0.4.0-beta1.jar"/>
@@ -17,15 +15,10 @@
 	<classpathentry kind="lib" path="lib/JFreeChart/jfreechart-1.0.13.jar"/>
 	<classpathentry kind="lib" path="lib/JFreeChart/swtgraphics2d.jar"/>
 	<classpathentry kind="lib" path="lib/JFreeChart/junit.jar"/>
-	
-	<classpathentry kind="lib" path="lib/J3D/vecmath-1_5_2-src.zip"/>
-	
 	<classpathentry kind="lib" path="lib/KDTree/kd.jar"/>
 	<classpathentry kind="lib" path="lib/j3dcore.jar"/>
 	<classpathentry kind="lib" path="lib/j3dutils.jar"/>
 	<classpathentry kind="lib" path="lib/occjava.jar"/>
-	
 	<classpathentry kind="lib" path="lib/vecmath.jar"/>
-	
 	<classpathentry kind="output" path="bin"/>
 </classpath>

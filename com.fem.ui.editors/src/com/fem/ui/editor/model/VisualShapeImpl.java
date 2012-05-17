@@ -21,6 +21,8 @@ import com.fem.api.VisualShape;
 import com.fem.ui.editor.model.Shape.Edge;
 import com.fem.ui.editor.model.Shape.Vertex;
 
+import editor.Mesher;
+
 public class VisualShapeImpl implements VisualShape, Visible{
 
 	protected int type;
