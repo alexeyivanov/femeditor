@@ -1,10 +1,5 @@
 package editor;
 
-public class Mesher {
-
-}
-package editor;
-
 import org.jcae.opencascade.jni.BRepPrimAPI_MakeBox;
 import org.jcae.opencascade.jni.TopAbs_ShapeEnum;
 import org.jcae.opencascade.jni.TopExp_Explorer;
