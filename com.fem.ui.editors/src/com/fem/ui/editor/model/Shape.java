@@ -18,6 +18,8 @@ import org.jcae.opencascade.jni.TopoDS_Vertex;
 
 import com.fem.api.VisualSettings;
 
+import editor.Mesher;
+
 /**
  * @author Constantin Shashkin
  * In this class there was used a part of code by Jerome Robert (from Viewer3D class).

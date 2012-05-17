@@ -15,6 +15,8 @@ import com.fem.api.VisualSettingsFactory;
 import com.fem.api.VisualShape;
 import com.fem.api.VisualShapeManager;
 
+import editor.Mesher;
+
 public class DrawModelImpl extends Observable implements IDrawModel {
 	
 	private Coordinate position = new Coordinate(0, 0, 0);
