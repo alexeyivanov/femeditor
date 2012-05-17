@@ -16,7 +16,6 @@ import javax.vecmath.Vector3d;
 import com.fem.ui.editor.model.Java3DViewer;
 import com.fem.ui.editor.model.Visible;
 import com.sun.j3d.utils.behaviors.mouse.MouseBehaviorCallback;
-import com.sun.j3d.utils.behaviors.vp.ViewPlatformAWTBehavior;
 import com.sun.j3d.utils.pickfast.PickCanvas;
 import com.sun.j3d.utils.pickfast.PickTool;
 
@@ -129,8 +128,8 @@ public class KeyMouseListener  /*extends ViewPlatformAWTBehavior /*/extends KeyM
 	
 	
 	private void doProcessDrag(MouseEvent event) {
-//		int x = event.getX();
-//		int y = event.getY();
+		int xpos = event.getX();
+		int ypos = event.getY();
 //		System.err.println(x_last +  y_last);
 //		int dx = x - x_last;
 //		int dy = y - y_last;
@@ -237,6 +236,68 @@ public class KeyMouseListener  /*extends ViewPlatformAWTBehavior /*/extends KeyM
 	private void transformChanged(Transform3D currXform2) {
 		
 	}
+	
+	
+	public Point3d getPosition(MouseEvent event) {
+//		Point3d eyePos = new Point3d();
+//		Point3d mousePos = new Point3d();
+//		canvas.getCenterEyeInImagePlate(eyePos);
+//		canvas.getPixelLocationInImagePlate(event.getX(),
+//                       event.getY(), mousePos);
+//		Transform3D transform = new Transform3D();
+//		canvas.getImagePlateToVworld(transform);
+//		transform.transform(eyePos);
+//		transform.transform(mousePos);
+//		Vector3d direction = new Vector3d(eyePos);
+//		direction.sub(mousePos);
+//		// three points on the plane
+//		Point3d p1 = new Point3d(.5, -.5, .5);
+//		Point3d p2 = new Point3d(.5, .5, .5);
+//		Point3d p3 = new Point3d(-.5, .5, .5);
+//		Transform3D currentTransform = new Transform3D();
+//		box.getLocalToVworld(currentTransform);
+//		currentTransform.transform(p1);
+//		currentTransform.transform(p2);
+//		currentTransform.transform(p3);		
+//		Point3d intersection = getIntersection(eyePos, mousePos,
+//                        p1, p2, p3);
+//		currentTransform.invert();
+//		currentTransform.transform(intersection);
+		return null;		
+	}
+
+//	public Point3d getCanvasPtToVworldPt(MouseEvent event) {
+//		Point3d eyePos = new Point3d();
+//		Point3d mousePos = new Point3d();
+//		canvas.getCenterEyeInImagePlate(eyePos);
+//		canvas.getPixelLocationInImagePlate(event.getX(),
+//                       event.getY(), mousePos);
+//        // convert the canvas point to ImagePlate coords
+//        getPixelLocationInImagePlate(x, y, VworldPt);
+//        // transform the point from an imageplate coordinate to a Vworld
+//        // coordinate
+//        getImagePlateToVworld(imagePlateToVworld);
+//        imagePlateToVworld.transform(mousePos);
+//
+//        getCenterEyeInImagePlate(centerEyePt);
+//        imagePlateToVworld.transform(centerEyePt);
+//        //Logging.trace(10, "Center eye pt VW " + centerEyePt);
+//        //now compute the z=0 value  in the centereye to VworldPt pt
+//        //centerEyePt_VworldPt = alpha *centerEyePt_planePt with
+//planePt.z=0
+//        double alpha = 0.0;
+//        if ( VworldPt.z != centerEyePt.z ) {
+//            alpha = centerEyePt.z /(VworldPt.z - centerEyePt.z);
+//        }
+//
+//        Point3d planePt =
+//            new Point3d(    centerEyePt.x - alpha *(VworldPt.x -
+//centerEyePt.x),
+//                            centerEyePt.y - alpha *(VworldPt.y -
+//centerEyePt.y),
+//                            0.0);
+//    return planePt;
+//    }
 
 
 	private void doProcessMousePressed(MouseEvent mouseEvent) {
@@ -261,7 +322,7 @@ public class KeyMouseListener  /*extends ViewPlatformAWTBehavior /*/extends KeyM
 					}						
 				}
 		    } else{
-		    	
+		    	System.err.println("doProcessMousePressed(MouseEvent mouseEvent)" + xpos + "----" + ypos);
 		    }
 		}
 	}
@@ -273,17 +334,12 @@ public class KeyMouseListener  /*extends ViewPlatformAWTBehavior /*/extends KeyM
 	public void dispose() {
 
 		this.setEnable(false);
-//		this.enableListeners(false);
+		this.enableListeners(false);
 	}
 	
 	public void setupCallback(MouseBehaviorCallback callback) {
 	      this.callback = callback;
 	 }
 
-
-//	@Override
-//	protected void processKeyMotion() {
-//		
-//	}
 
 }
