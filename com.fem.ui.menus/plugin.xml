@@ -158,6 +158,11 @@
                   label="Draw Element"
                   style="push">
             </command>
+            <command
+                  commandId="com.fem.cmd.mesher"
+                  label="Mesher"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -208,6 +213,11 @@
                   commandId="com.fem.cmd.drawElement"
                   icon="icons/draw_element.gif"
                   label="Draw Element"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.fem.cmd.mesher"
+                  label="Mesher"
                   style="push">
             </command>
          </toolbar>

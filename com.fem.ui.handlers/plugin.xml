@@ -95,6 +95,18 @@
             </with>
          </enabledWhen>
       </handler>
+      <handler
+            class="com.fem.cmd.MeshCmd"
+            commandId="com.fem.cmd.mesher">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
    </extension>
 
 </plugin>
