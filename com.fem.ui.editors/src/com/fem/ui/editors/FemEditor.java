@@ -1,6 +1,10 @@
 package com.fem.ui.editors;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Frame;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.Observable;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -21,6 +25,8 @@ import org.eclipse.ui.part.EditorPart;
 import com.fem.api.IDrawModel;
 import com.fem.api.IFemEditor;
 import com.fem.ui.editor.model.Java3DViewer;
+import com.fem.ui.utils.images.ImageCache;
+import com.fem.ui.utils.images.ImageUtils;
 
 public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvider, ISelectionListener {
 	
@@ -33,6 +39,8 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 	private Frame frameAWT;
 	
 	private Java3DViewer viewer;
+	
+//	private String drawMode;
 	
 	
 
@@ -93,7 +101,6 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 		frameAWT = SWT_AWT.new_Frame(topComposite);
 		viewer = new Java3DViewer(frameAWT, model);
 		
-		
 		parent.dispose();
 		parent = null;
 		
@@ -106,6 +113,9 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 		
 		getSite().setSelectionProvider(this);
 		getSite().getWorkbenchWindow().getSelectionService().addSelectionListener(this);
+		
+		
+		
 
 	}
 	
@@ -167,6 +177,22 @@ public class FemEditor extends EditorPart implements IFemEditor, ISelectionProvi
 		       model.notifyAllObservers();
 			}
 	   }
+	}
+	
+   
+	public void setFemEditorDrawMode(String fileName, String drawMode) {
+		viewer.setDrawMode(drawMode);
+//		Toolkit toolkit = Toolkit.getDefaultToolkit();
+//		org.eclipse.swt.graphics.Image swtImage = ImageCache.getImage(fileName);
+//		Cursor customCursor = toolkit.createCustomCursor(ImageUtils.convertSWTToAWT(swtImage, SWT.IMAGE_PNG), new Point(), "");
+//		frameAWT.setCursor(customCursor);
+	}
+
+	@Override
+	public void setFemEditorDrawModeDefault(String drawMode) {
+		viewer.setDrawMode(drawMode);
+		frameAWT.setCursor( new Cursor(Cursor.DEFAULT_CURSOR));
+		
 	}
 
 }

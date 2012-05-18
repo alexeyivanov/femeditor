@@ -338,7 +338,7 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 		vs.setTexture(null, null);
 	}
 	
-	private void setPos(double x, double y, double z) {
+	public void setPosition(double x, double y, double z) {
 		position.setXYZ(x, y, z);
 	}
 	
@@ -351,7 +351,7 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 	}
 	
 	public void moveTo(double x, double y, double z) {
-		setPos(x,y,z);
+		setPosition(x,y,z);
 		newLine();
 	}
 	
@@ -395,7 +395,7 @@ public class DrawModelImpl extends Observable implements IDrawModel {
 			lastEdge = add(shape);
 		}
 						
-		setPos(x,y,z);
+		setPosition(x,y,z);
 		
 		if (Math.sqrt((firstPoint.getX()-x)*(firstPoint.getX()-x)+(firstPoint.getY()-y)*(firstPoint.getY()-y)+(firstPoint.getZ()-z)*(firstPoint.getZ()-z)) < 1E-6) {
 			return makeFace();

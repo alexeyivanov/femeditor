@@ -1,4 +1,4 @@
-package com.fem.views.annotations;
+package com.fem.ui.utils.images;
 
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -10,7 +10,7 @@ import java.util.Map;
 public class ImageCache {
 
     private static Map<String, ImageDescriptor> map = new HashMap<String, ImageDescriptor>();
-    private static final String PATH = "/images/";
+    private static final String PATH = "/icons/";
 
     public static Image getImage(String fileName) {
         ImageDescriptor ima = getImageDescriptor(fileName);

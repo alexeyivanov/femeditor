@@ -18,10 +18,10 @@ public class Java3DViewerTester {
 		d.setMeshSize(0.1);
 		d.meshAll();
 		
-		Java3DViewer.view(d);
+//		Java3DViewer.view(d);
 	}
 	
-	static IDrawModel drawFN2() {
+	public static IDrawModel drawFN2() {
 		
 		IDrawModel d = new DrawModelImpl(new VisualSettingsFactoryJava3DImpl());
 		d.setGeometryShapeManager(new GeometryShapeManagerOCC());
@@ -30,32 +30,32 @@ public class Java3DViewerTester {
 		d.setLineWidth(0.1f);
 		
 		d.circle(0.6);
-		
-		d.circle(0.4);
-		
-		d.moveTo(0, -0.2, 0);
-		d.setFaceColor(Color.CYAN);
-		VisualShape b1 = d.box(0.8, 0.3, 0.3);
-		
-		d.setFaceColor(Color.GREEN);
-		VisualShape b2 = d.box(0.8, 0.15, 0.6);
-				
-		d.setFaceColor(Color.MAGENTA);
-		VisualShape box = d.box(-0.25, 0.25, 0.25);
-		
-		d.setFaceColor(Color.ORANGE);
-		d.box(-0.1, 0.1, 0.35);
-		
-//		d.setTexture("brick1.gif");
-		
-		d.setFaceColor(Color.YELLOW);
-		VisualShape cyl = d.cylinder(0.5, 0.7, Math.PI*3/2);
-				
-//		d.noTexture();
-		d.moveTo(0, 0, 0);
-		d.setFaceColor(Color.BLUE);
-		d.cylinder(0.2, 0.3, Math.PI*2);
-		d.save("FN.brep");
+//		
+//		d.circle(0.4);
+////		
+//		d.moveTo(0, -0.2, 0);
+//		d.setFaceColor(Color.CYAN);
+//		VisualShape b1 = d.box(0.8, 0.3, 0.3);
+//		
+//		d.setFaceColor(Color.GREEN);
+//		VisualShape b2 = d.box(0.8, 0.15, 0.6);
+//				
+//		d.setFaceColor(Color.MAGENTA);
+//		VisualShape box = d.box(-0.25, 0.25, 0.25);
+//		
+//		d.setFaceColor(Color.ORANGE);
+//		d.box(-0.1, 0.1, 0.35);
+//		
+////		d.setTexture("brick1.gif");
+//		
+//		d.setFaceColor(Color.YELLOW);
+//		VisualShape cyl = d.cylinder(0.5, 0.7, Math.PI*3/2);
+//				
+////		d.noTexture();
+//		d.moveTo(0, 0, 0);
+//		d.setFaceColor(Color.BLUE);
+//		d.cylinder(0.2, 0.3, Math.PI*2);
+//		d.save("FN.brep");
 //		d.load("C:/Users/echekanina/Documents/EclipseFEMProject/workspaceFEMFinal/femeditor/columns.brep");
 		return d;
 	}
@@ -109,8 +109,17 @@ public class Java3DViewerTester {
 		wall = d.cut(wall,door);
 		door = d.copy(door, 2, 0, 0);
 		wall = d.cut(wall,door);
+//		
+//		d.lineTo(20,0,0);
+//		d.moveTo(0, 0, 0);
+//		d.lineTo(0,20,0);
+////		d.setPosition(0, 0, 0);
+//		d.moveTo(0, 0, 0);
+//		d.lineTo(0,0,20);
+//		d.setPosition(0, 0, 0);
 		
-		d.save("columns.brep");	
+		
+//		d.save("columns.brep");	
 		return d;
 	}
 

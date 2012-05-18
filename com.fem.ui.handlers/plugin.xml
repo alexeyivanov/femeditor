@@ -107,6 +107,30 @@
             </with>
          </activeWhen>
       </handler>
+      <handler
+            class="com.fem.cmd.DrawLineCmd"
+            commandId="com.fem.cmd.drawLineCmd">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
+      <handler
+            class="com.fem.cmd.BackMouse"
+            commandId="com.fem.ui.menus.backMouse">
+         <activeWhen>
+            <with
+                  variable="activePartId">
+               <equals
+                     value="com.fem.main.femEditor">
+               </equals>
+            </with>
+         </activeWhen>
+      </handler>
    </extension>
 
 </plugin>

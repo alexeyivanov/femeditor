@@ -4,7 +4,8 @@ import java.util.Observer;
 
 public interface IFemEditor extends Observer {
 	
-//	IDrawModel getDrawModel();
-//	void setDrawModel(IDrawModel model);
+	void setFemEditorDrawMode(String fileName, String drawMode);
+
+	void setFemEditorDrawModeDefault(String drawMode);
 
 }

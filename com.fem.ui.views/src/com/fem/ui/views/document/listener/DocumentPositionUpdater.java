@@ -19,7 +19,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 
 import com.fem.api.IDrawModel;
-import com.fem.ui.editors.FemEditor;
+import com.fem.api.IFemEditor;
 import com.fem.ui.views.FemView;
 import com.fem.views.annotations.ErrorAnnotation;
 import com.vem.views.utils.ReflectionUtils;
@@ -111,7 +111,7 @@ public class DocumentPositionUpdater implements IPositionUpdater {
 			//temp solution
 			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 			IEditorPart activeEditor = page.getActiveEditor();
-			if(activeEditor != null && activeEditor instanceof FemEditor) {
+			if(activeEditor != null && activeEditor instanceof IFemEditor) {
 				IDrawModel model = (IDrawModel) activeEditor.getEditorInput().getAdapter(IDrawModel.class);
 
 				Class[] classesParam = new Class[0];

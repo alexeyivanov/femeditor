@@ -165,6 +165,11 @@
                   label="Mesher"
                   style="push">
             </command>
+            <command
+                  commandId="com.fem.cmd.drawLineCmd"
+                  label="Line"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -211,6 +216,15 @@
                   label="Solve"
                   style="push">
             </command>
+         </toolbar>
+         <toolbar
+               id="com.fem.ui.menus.drawToolbar">
+            <command
+                  commandId="com.fem.ui.menus.backMouse"
+                  icon="icons/mouse_pointer.png"
+                  label="Mouse"
+                  style="push">
+            </command>
             <command
                   commandId="com.fem.cmd.drawElement"
                   icon="icons/draw_element.gif"
@@ -220,6 +234,12 @@
             <command
                   commandId="com.fem.cmd.mesher"
                   label="Mesher"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.fem.cmd.drawLineCmd"
+                  icon="icons/drawLine16x16.png"
+                  label="Line"
                   style="push">
             </command>
          </toolbar>

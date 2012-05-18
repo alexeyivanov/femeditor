@@ -1,12 +1,9 @@
 package com.fem.ui.editor.model;
 
-import java.awt.Frame;
 import java.awt.GraphicsConfigTemplate;
 import java.awt.GraphicsConfiguration;
 import java.awt.GraphicsDevice;
 import java.awt.Window;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -25,13 +22,6 @@ import javax.media.j3d.TransformGroup;
 import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 import javax.vecmath.Vector3f;
-
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.awt.SWT_AWT;
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Shell;
 
 import com.fem.api.IDrawModel;
 import com.fem.api.VisualShape;
@@ -59,6 +49,7 @@ public class Java3DViewer extends Canvas3D {
 	private IDrawModel drawModel;
 	private List<TransformGroup> textLabels = new ArrayList<TransformGroup>();
 	
+	private String drawMode;
 	
 	private Logger logger =  Logger.getLogger(Java3DViewer.class.getName());
 	
@@ -164,7 +155,8 @@ public class Java3DViewer extends Canvas3D {
     	rotation.setCapability(TransformGroup.ALLOW_TRANSFORM_WRITE);
     	rotation.setCapability(TransformGroup.ALLOW_CHILDREN_WRITE);    		
     	view.addChild(rotation);    			
-		bounds = new BoundingSphere();		
+		bounds = new BoundingSphere(new Point3d(0.0,0.0,0.0), Double.POSITIVE_INFINITY);		
+//		bounds = new BoundingSphere();		
 		DirectionalLight lightD = new DirectionalLight();
         lightD.setDirection(new Vector3f(0.0f,0.0f,-0.7f));
         lightD.setInfluencingBounds(bounds);
@@ -176,6 +168,7 @@ public class Java3DViewer extends Canvas3D {
         view.addChild(lightA);
 		
 		Background background = new Background();
+//		background.setColor(1.0f, 0f, 0f);
 		background.setColor(1.0f, 1.0f, 1.0f);
 		background.setApplicationBounds(bounds);
 		view.addChild(background);
@@ -200,7 +193,7 @@ public class Java3DViewer extends Canvas3D {
 		angleH = (float)Math.PI/5;
 		
 		draw(drawing);
-		zoomAll();
+//		zoomAll();
 	}
 	
 	public void draw(IDrawModel model) {
@@ -397,37 +390,37 @@ public class Java3DViewer extends Canvas3D {
 //		
 //	}
 		
-    public static void view(IDrawModel d)
-	{
-		final Display display = new Display();
-		final Shell shell = new Shell(display);
-		shell.setLayout(new FillLayout());
-		
-		Composite composite = new Composite(shell, SWT.EMBEDDED | SWT.NO_BACKGROUND);
-	    Frame baseFrame = SWT_AWT.new_Frame(composite);
-	    
-		baseFrame.setBounds(0, 0, 800, 600);
-
-		Java3DViewer viewer = new Java3DViewer(baseFrame, d);
-		baseFrame.add(viewer);
-	    
-		shell.open();
-		
-//		d.setFaceColor(Color.GREEN);
-//		d.circle(0.9);
-//		viewer.draw(d);
-		
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch()) display.sleep();
-		}
-		
-		baseFrame.dispose();
-		shell.dispose();
-		composite.dispose();
-		display.dispose();
-		System.exit(0);
-		
-	}
+//    public static void view(IDrawModel d)
+//	{
+//		final Display display = new Display();
+//		final Shell shell = new Shell(display);
+//		shell.setLayout(new FillLayout());
+//		
+//		Composite composite = new Composite(shell, SWT.EMBEDDED | SWT.NO_BACKGROUND);
+//	    Frame baseFrame = SWT_AWT.new_Frame(composite);
+//	    
+//		baseFrame.setBounds(0, 0, 800, 600);
+//
+//		Java3DViewer viewer = new Java3DViewer(baseFrame, d);
+//		baseFrame.add(viewer);
+//	    
+//		shell.open();
+//		
+////		d.setFaceColor(Color.GREEN);
+////		d.circle(0.9);
+////		viewer.draw(d);
+//		
+//		while (!shell.isDisposed()) {
+//			if (!display.readAndDispatch()) display.sleep();
+//		}
+//		
+//		baseFrame.dispose();
+//		shell.dispose();
+//		composite.dispose();
+//		display.dispose();
+//		System.exit(0);
+//		
+//	}
 
 
 	public float getAngleStep() {
@@ -451,5 +444,18 @@ public class Java3DViewer extends Canvas3D {
 		this.center = center;
 	}
 
+	public void drawLine(Point3d position) {
+		drawModel.setLineWidth(0.6f);
+		drawModel.lineTo(position.x, position.y, position.z);
+		drawModel.notifyAllObservers();
+	}
+
+	public String getDrawMode() {
+		return drawMode;
+	}
+
+	public void setDrawMode(String drawMode) {
+		this.drawMode = drawMode;
+	}
 
 }

@@ -72,6 +72,10 @@ public interface IDrawModel  extends IAdaptable {
 	
 	void drawElement();
 	
+	public VisualShape lineTo(double x, double y, double z);
+	
+	public void setPosition(double x, double y, double z);
+	
 	
 	
 }

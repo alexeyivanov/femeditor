@@ -19,6 +19,7 @@ public class CommandBuilder {
 		result.put("move(double x, double y, double z)", "move element");
 		result.put("cut(VisualShape s1, VisualShape s2)", "cut some element");
 		result.put("lineTo(double x, double y, double z)", "draw line");
+		result.put("setPosition(double x, double y, double z)", "set position");
 		return result;
 	}
 

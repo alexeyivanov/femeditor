@@ -5,6 +5,8 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.swt.graphics.Image;
 
+import com.fem.ui.utils.images.ImageCache;
+
 public class ErrorAnnotation extends Annotation {
 	private IMarker marker;
 	private String text;

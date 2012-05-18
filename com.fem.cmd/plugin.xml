@@ -84,6 +84,14 @@
             id="com.fem.cmd.mesher"
             name="Mesher">
       </command>
+      <command
+            id="com.fem.cmd.drawLineCmd"
+            name="Draw Line">
+      </command>
+      <command
+            id="com.fem.ui.menus.backMouse"
+            name="Back to Mouse">
+      </command>
    </extension>
 
 </plugin>

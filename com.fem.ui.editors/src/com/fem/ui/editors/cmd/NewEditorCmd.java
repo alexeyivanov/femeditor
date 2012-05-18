@@ -27,7 +27,8 @@ public class NewEditorCmd extends AbstractHandler  {
 		
 //		        IDrawModel model = new DrawModelImpl();
 		        
-		        IDrawModel model = Java3DViewerTester.drawWall2();
+		        IDrawModel model = Java3DViewerTester.drawFN2();
+//		        IDrawModel model = Java3DViewerTester.drawWall2();
 		        
 				DummyEditorInput input = new DummyEditorInput(model);
 				try {
