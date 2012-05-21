@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="FEMmodels" id="com.fem.main.fem" application="com.fem.main.application" useFeatures="false" includeLaunchers="true">
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <plugins>
+   </plugins>
+
+   <features>
+      <feature id="com.fem.api.feature" version="1.0.0.qualifier"/>
+      <feature id="com.fem.cmd.feature" version="1.0.0.qualifier"/>
+      <feature id="com.fem.core" version="1.0.0.qualifier"/>
+      <feature id="com.fem.ui.handlers.feature" version="1.0.0.qualifier"/>
+      <feature id="com.fem.ui.menus.feature" version="1.0.0.qualifier"/>
+      <feature id="com.fem.ui.utils.feature" version="1.0.0.qualifier"/>
+      <feature id="com.fem.ui.views.feature" version="1.0.0.qualifier"/>
+   </features>
+
+
+</product>

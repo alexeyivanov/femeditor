@@ -28,6 +28,7 @@
          <view
                closeable="true"
                id="com.fem.ui.views.commandView"
+               minimized="false"
                moveable="true"
                ratio="0.3f"
                relationship="left"
@@ -75,7 +76,35 @@
       </menuContribution>
    </extension>
    <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.eclipse.ui.ExtensionFactory:keysPreferencePage"
+            id="org.eclipse.ui.preferencePages.Keys"
+            name="Keys">
+      </page>
+   </extension>
+   <extension
          id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.fem.main.application"
+            name="FEM models">
+         <property
+               name="appName"
+               value="FEM models">
+         </property>
+         <property
+               name="aboutImage"
+               value="icons/logo128.png">
+         </property>
+         <property
+               name="windowImages"
+               value="icons/logo32.png">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="product1"
          point="org.eclipse.core.runtime.products">
       <product
             application="com.fem.main.application"
@@ -95,12 +124,16 @@
       </product>
    </extension>
    <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.eclipse.ui.ExtensionFactory:keysPreferencePage"
-            id="org.eclipse.ui.preferencePages.Keys"
-            name="Keys">
-      </page>
+         id="fem"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.fem.main.application"
+            name="FEMmodels">
+         <property
+               name="appName"
+               value="FEMmodels">
+         </property>
+      </product>
    </extension>
 
 </plugin>

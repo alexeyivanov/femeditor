@@ -9,6 +9,7 @@ import javax.media.j3d.Material;
 import javax.media.j3d.PolygonAttributes;
 import javax.media.j3d.TexCoordGeneration;
 import javax.media.j3d.Texture2D;
+//import javax.media.j3d.Texture2D;
 import javax.media.j3d.TextureAttributes;
 import javax.media.j3d.TransparencyAttributes;
 import javax.vecmath.Color3f;
@@ -54,7 +55,7 @@ public class VisualSettingsJava3DImpl implements VisualSettings, Cloneable {
 	 * @param texture
 	 * @param t - transparency value 0...1
 	 */
-	public VisualSettingsJava3DImpl(Color faceColor,	Color lineColor, float lineWidth, Texture2D texture, double t) {
+	public VisualSettingsJava3DImpl(Color faceColor, Color lineColor, float lineWidth, Texture2D texture, double t) {
 		
 		this.faceColor = faceColor;
 		this.lineColor = lineColor;

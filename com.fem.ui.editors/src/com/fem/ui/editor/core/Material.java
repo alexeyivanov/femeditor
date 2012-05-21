@@ -2,10 +2,7 @@ package com.fem.ui.editor.core;
 
 import java.util.ArrayList;
 
-
-
-
-import Jama.*;
+import Jama.Matrix;
 
 public interface Material {
 	

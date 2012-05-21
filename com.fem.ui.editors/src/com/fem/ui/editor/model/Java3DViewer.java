@@ -172,22 +172,10 @@ public class Java3DViewer extends Canvas3D {
 		background.setColor(1.0f, 1.0f, 1.0f);
 		background.setApplicationBounds(bounds);
 		view.addChild(background);
-        		//		
-//		PickMouse pick = new PickMouse(this, view, bounds);
-//		view.addChild(pick);        
-//		
-//		addKeyListener(new KeyListener());
 		
-//		    KeyNavigatorBehavior keyNavBeh = new KeyNavigatorBehavior(universe.getViewingPlatform().getViewPlatformTransform());
-//	        keyNavBeh.setSchedulingBounds(bounds);
-////	        keyNavBeh.s
-//	        view.addChild(keyNavBeh);
-		
-		
-	        KeyMouseListener keyNavBeh = new KeyMouseListener(this, view, bounds);
-	        keyNavBeh.setTransformGroup(rotation);
-//	        keyNavBeh.setViewingPlatform(universe.getViewingPlatform());
-	        view.addChild(keyNavBeh);
+		KeyMouseListener keyNavBeh = new KeyMouseListener(this, view, bounds);
+		keyNavBeh.setTransformGroup(rotation);
+		view.addChild(keyNavBeh);
 		
 		angleV = (float)Math.PI/4;
 		angleH = (float)Math.PI/5;

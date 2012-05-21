@@ -21,6 +21,7 @@ public class Mesher {
 	static {
 		System.load("C:/AllLib/AllLib/Gmsh/Gmsh.dll");
 //		System.load("c:/Users/aivanov/Downloads/AllLib/AllLib/Gmsh/Gmsh.dll");
+//		System.load("D:/Users/ShashkinC/Downloads/gmsh-2.5.0-source/gmsh-2.5/test/RelWithDebInfo/Gmsh.dll");
 	}
 	//TopoDS_Shape s
 	public static native void CreateGmodel(long s);

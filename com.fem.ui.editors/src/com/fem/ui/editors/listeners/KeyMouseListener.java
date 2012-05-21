@@ -249,42 +249,6 @@ public class KeyMouseListener extends KeyMouseBehavior{
 		canvas.getImagePlateToVworld(transform);
 		transform.transform(eyePos);
 		transform.transform(mousePos);
-		
-		
-		
-//		 Point3d cursor = new Point3d();
-//	        canvas.getPixelLocationInImagePlate( event.getX(), event.getY(), cursor );
-//	        Transform3D imagePlateToVworld = new Transform3D();
-//	        canvas.getImagePlateToVworld( imagePlateToVworld );
-//	        Transform3D vWorldToImagePlate = new Transform3D();
-//	        vWorldToImagePlate = new Transform3D( imagePlateToVworld );
-//	        vWorldToImagePlate.invert();
-//	        
-////	        cursor.sub( previousCursorIP);
-//	        
-////	        Point3d loc = new Point3d();
-////	        pickPoint.getPosition( loc );
-//	        
-//	        //System.out.println("Point "+loc);
-////	        vWorldToImagePlate.transform( loc );
-//	        System.out.println("Point in IP "+cursor );
-//	        
-//	        Point3d eye = new Point3d();
-//	        canvas.getCenterEyeInImagePlate( eye );
-	        //System.out.println("Eye in IP "+eye );
-		
-		
-		
-//		Vector3d direction = new Vector3d(eyePos);
-//		direction.sub(mousePos);
-//		Transform3D transform = new Transform3D();
-//		canvas.getImagePlateToVworld(transform);
-//		transform.transform(eyePos);
-//		transform.transform(mousePos);
-//		Vector3d direction = new Vector3d(eyePos);
-//		direction.sub(mousePos);
-        
-        
         
 		return mousePos;		
 	}
@@ -313,7 +277,6 @@ public class KeyMouseListener extends KeyMouseBehavior{
 					}						
 				}
 		    } else{
-		    	System.err.println(pickCanvas.getStartPosition());
 		    	if(DRAW_DEFAULT_MODE.equals(viewer.getDrawMode())){
 		    		return;
 		    	}
